@@ -8,6 +8,6 @@ public class test1 {
     public void test(){
         JobSeeker jobSeeker=new JobSeeker();
         jobSeeker.setJID(111);
-        System.out.println(jobSeeker.getJID()+111);
+        System.out.println(jobSeeker.getJID()+11122);
     }
 }
