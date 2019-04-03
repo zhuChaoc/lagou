@@ -1,3 +1,4 @@
+
 create table `user_menu` (
 	`id` int (11),
 	`loginerid` int (11),

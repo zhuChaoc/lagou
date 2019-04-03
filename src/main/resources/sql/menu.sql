@@ -1,3 +1,4 @@
+
 create table `menu` (
 	`id` int (11),
 	`name` varchar (60),

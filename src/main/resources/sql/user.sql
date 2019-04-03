@@ -1,3 +1,4 @@
+
 create table `user` (
 	`id` int (11),
 	`account` varchar (60),
