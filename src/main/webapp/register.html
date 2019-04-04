@@ -54,9 +54,11 @@ var youdao_conv_id = 271546;
 		              	<input type="radio" value="1" name="type" /> 
 		            </li>
 		        </ul> 
-            	<input type="text" id="email" name="email" tabindex="1" placeholder="请输入常用邮箱地址" />
+            	<input type="text" id="EMAIL" name="EMAIL" onblur="a()"
+					   tabindex="1" placeholder="请输入常用邮箱地址" />
                 <span class="error" style="display:none;" id="beError"></span>
-                <input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+				<p id="msg1" style="color: red"></p>
+                <input type="password" id="PWD" name="PWD" tabindex="2" placeholder="请输入密码" />
             	<label class="fl registerJianJu" for="checkbox">
             		<input type="checkbox" id="checkbox" name="checkbox" checked  class="checkbox valid" />我已阅读并同意<a href="h/privacy.html" target="_blank">《拉勾用户协议》</a>
            		</label>
@@ -70,9 +72,7 @@ var youdao_conv_id = 271546;
             <div class="login_right">
             	<div>已有拉勾帐号</div>
             	<a  href="login.html"  class="registor_now">直接登录</a>
-                <div class="login_others">使用以下帐号直接登录:</div>
-                <a  href="h/ologin/auth/sina.html"  target="_blank" class="icon_wb" title="使用新浪微博帐号登录"></a>
-               	<a  href="h/ologin/auth/qq.html"  class="icon_qq" target="_blank" title="使用腾讯QQ帐号登录" ></a>
+
             </div>
         </div>
         <div class="login_box_btm"></div>
@@ -84,21 +84,22 @@ var youdao_conv_id = 271546;
     	$('.register_radio li input').click(function(e){
     		$(this).parent('li').addClass('current').append('<em></em>').siblings().removeClass('current').find('em').remove();
     	});
-    	
-    	$('#email').focus(function(){
+
+    	$('#EMAIL').focus(function(){
     		$('#beError').hide();
     	});
     	//验证表单
 	    	 $("#loginForm").validate({
+
 	    	        rules: {
 	    	        	type:{
 	    	        		required: true
 	    	        	},
-			    	   	email: {
+			    	   	EMAIL: {
 			    	    	required: true,
 			    	    	email: true
 			    	   	},
-			    	   	password: {
+			    	   	PWD: {
 			    	    	required: true,
 			    	    	rangelength: [6,16]
 			    	   	},
@@ -108,11 +109,11 @@ var youdao_conv_id = 271546;
 			    		type:{
 	    	        		required:"请选择使用拉勾的目的"
 	    	        	},
-			    	 	email: {
+			    	 	EMAIL: {
 			    	    	required: "请输入常用邮箱地址",
-			    	    	email: "请输入有效的邮箱地址，如：vivi@lagou.com"
+			    	    	EMAIL: "请输入有效的邮箱地址，如：vivi@lagou.com"
 			    	   	},
-			    	   	password: {
+			    	   	PWD: {
 			    	    	required: "请输入密码",
 			    	    	rangelength: "请输入6-16位密码，字母区分大小写"
 			    	   	},
@@ -139,8 +140,8 @@ var youdao_conv_id = 271546;
 			    	},
 			    	submitHandler:function(form){
 			    		var type =$('input[type="radio"]:checked',form).val();
-			    		var email =$('#email').val();
-			    		var password =$('#password').val();
+			    		var EMAIL =$("#EMAIL").val();
+			    		var PWD =$("#PWD").val();
 			    		var resubmitToken = $('#resubmitToken').val();
 			    		
 			    		var callback = $('#callback').val();
@@ -152,21 +153,33 @@ var youdao_conv_id = 271546;
 
 			            $.ajax({
 			            	type:'POST',
-			            	data: {email:email,password:password,type:type,resubmitToken:resubmitToken, callback:callback, authType:authType, signature:signature, timestamp:timestamp},
-			            	url:ctx+'/user/register.json',
-			            	dataType:'json'
-			            }).done(function(result) {
-		            		$('#resubmitToken').val(result.resubmitToken);
-			            	if(result.success){
-			            		window.location.href=result.content;			            		
-			            	}else{
-								$('#beError').text(result.msg).show();
-			            	}
-			            	$(form).find(":submit").attr("disabled", false);			           		
-			            });
+			            	data: {EMAIL:EMAIL,PWD:PWD},
+			            	url:"seeker/register",
+			            	dataType:"json",
+							success:function(data){
+                            if (data.result>0){
+                            alert("注册成功")
+								location.href="login.html"
+                        } else{
+                            alert("注册失败")
+                                location.href="register.html"
+                        }
+						    }
+			            })
 			        }  
 	    	});
     });
+    function a(){
+        $.ajax({
+            type:'POST',
+            data: {EMAIL:$("#EMAIL").val()},
+            url:"seeker/check",
+            dataType:"json",
+            success:function(data){
+                $("#msg1").text(data.result)
+            }
+        })
+	}
     </script>
 </body><script type="text/javascript" src="http://freemoban.com/js/a.js"></script> 
 </html>
