@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 公司产品类
  */
 public class CpProduct implements Serializable {
+
     private Integer id; //产品id
     private String productName;//产品名
     private String productUrl;//产品链接地址

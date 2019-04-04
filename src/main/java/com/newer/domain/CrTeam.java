@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 公司创始团队类
  */
 public class CrTeam implements Serializable {
+
     private Integer id;  //创始人id
     private String createName; //创始人名字
     private String  job;//职位

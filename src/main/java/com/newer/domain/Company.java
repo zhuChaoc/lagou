@@ -8,6 +8,7 @@ import java.util.List;
  * 公司基本信息类
  */
 public class Company implements Serializable {
+
     private Integer id;  //公司id
     private String cpName; //公司名称
     private String cpPhone;//公司联系方式

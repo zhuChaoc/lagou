@@ -168,6 +168,7 @@ public class Job implements Serializable {
     }
 
     public void setSubTimes(Integer subTimes) {
+
         this.subTimes = subTimes;
     }
 }

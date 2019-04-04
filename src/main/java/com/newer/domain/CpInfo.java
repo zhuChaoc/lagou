@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 公司背景类
  */
 public class CpInfo implements Serializable {
+
     private Integer id;//公司背景id
     private String cpTig;//公司标签
     private String cpLongInfo;//公司介绍
