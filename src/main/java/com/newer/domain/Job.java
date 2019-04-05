@@ -1,5 +1,7 @@
 package com.newer.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -17,6 +19,7 @@ public class Job implements Serializable {
     private String jobLightPoint;//职位亮点
     private String jobInfo;//职位描述
     private String jobAddress;//工作地址
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date publishTime;//发布时间
     private String state;//职位状态
     private Integer subTimes;//订阅次数

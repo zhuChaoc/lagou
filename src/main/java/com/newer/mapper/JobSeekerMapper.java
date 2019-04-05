@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Select;
 
 
 public interface JobSeekerMapper {
-
      @Insert("insert into jobseeker values(null,#{EMAIL},#{PWD},null,null,null,null,null,null,null,null)")
      int addJobSeeker(JobSeeker jobSeeker);
 

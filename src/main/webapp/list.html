@@ -15,7 +15,6 @@
 <!-- <div class="web_root"  style="display:none">h</div> -->
 <script type="text/javascript">
 var ctx = "h";
-console.log(1);
 </script>
 <link rel="Shortcut Icon" href="http://www.lagou.com/h/images/favicon.ico">
 <link rel="stylesheet" type="text/css" href="style/css/style.css"/>
@@ -142,13 +141,13 @@ var youdao_conv_id = 271546;
         
         <div class="content">
         	<div id="search_box">
-		<form id="searchForm" name="searchForm" action="list.html" method="get">
+		<form id="searchForm" name="searchForm">
         <ul id="searchType">
         	        	<li data-searchtype="1" class="type_selected">职位</li>
         	<li data-searchtype="4">公司</li>
         	        </ul>
         <div class="searchtype_arrow"></div>
-        <input type="text" id="search_input" name = "kd"  tabindex="1" value="前端开发"  placeholder="请输入职位名称，如：产品经理"  />
+        <input type="text" id="search_input" name = "jobName"  tabindex="1"   placeholder="请输入职位名称，如：产品经理"  />
         <input type="hidden" name="spc" id="spcInput" value="1"/>
         <input type="hidden" name="pl" id="plInput" value=""/>
         <input type="hidden" name="gj" id="gjInput" value=""/>
@@ -160,7 +159,7 @@ var youdao_conv_id = 271546;
         <input type="hidden" name="lc" id="lc" value="" />
         <input type="hidden" name="workAddress" id="workAddress" value=""/>
                 <input type="hidden" name="city" id="cityInput" value="全国"/>
-                <input type="submit" id="search_button" value="搜索" />
+                <input type="button" id="search_button" value="搜索" />
     </form>
 </div>
 <style>
@@ -810,6 +809,19 @@ var youdao_conv_id = 271546;
 
 <script>
 $(function(){
+    $("#search_button").click(()=>{
+        $.ajax({
+            url: "job/select",
+            type: "get",
+            data:{"jobType":"","jobName":$("#search_input").val()},
+            dataType: "json",
+            success: (data) => {
+                data.jobs.forEach(job => {
+                    console.log(job.jobInfo)
+                })
+            }
+        })
+	})
 	/***************************
  	 * 分页
  	 */
