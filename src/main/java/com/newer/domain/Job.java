@@ -20,27 +20,16 @@ public class Job implements Serializable {
     private Date publishTime;//发布时间
     private String state;//职位状态
     private Integer subTimes;//订阅次数
-
+    private Integer cpid;
     public Job() {
     }
 
-    public Job(Integer id, String jobType, String jobName, String dName, String jobQuality, Integer minSal, Integer maxSal, String jobCity, String jobExperience, String jobEducation, String jobLightPoint, String jobInfo, String jobAddress, Date publishTime, String state, Integer subTimes) {
-        this.id = id;
-        this.jobType = jobType;
-        this.jobName = jobName;
-        this.dName = dName;
-        this.jobQuality = jobQuality;
-        this.minSal = minSal;
-        this.maxSal = maxSal;
-        this.jobCity = jobCity;
-        this.jobExperience = jobExperience;
-        this.jobEducation = jobEducation;
-        this.jobLightPoint = jobLightPoint;
-        this.jobInfo = jobInfo;
-        this.jobAddress = jobAddress;
-        this.publishTime = publishTime;
-        this.state = state;
-        this.subTimes = subTimes;
+    public Integer getCpid() {
+        return cpid;
+    }
+
+    public void setCpid(Integer cpid) {
+        this.cpid = cpid;
     }
 
     public Integer getId() {
