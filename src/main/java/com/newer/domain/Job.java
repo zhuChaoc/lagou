@@ -20,7 +20,7 @@ public class Job implements Serializable {
     private Date publishTime;//发布时间
     private String state;//职位状态
     private Integer subTimes;//订阅次数
-    private Integer cpid;
+    private Integer cpid;//公司
     public Job() {
     }
 
