@@ -1,5 +1,6 @@
 package com.newer.controller;
 import com.newer.domain.Job;
+import com.newer.service.CompanyService;
 import com.newer.service.JobService;
 import com.newer.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.Map;
 public class JobController {
     @Autowired
     private JobService jobService;
+    @Autowired
+    private CompanyService companyService;
     @RequestMapping("/select")
     public Map<String,Object> insertJobSeeker(String jobType,String jobName){
         jobType="%"+jobType+"%";

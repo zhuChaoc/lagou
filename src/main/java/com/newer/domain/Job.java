@@ -23,16 +23,16 @@ public class Job implements Serializable {
     private Date publishTime;//发布时间
     private String state;//职位状态
     private Integer subTimes;//订阅次数
-    private Integer cpid;//公司
+    private Company company;//公司
     public Job() {
     }
 
-    public Integer getCpid() {
-        return cpid;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCpid(Integer cpid) {
-        this.cpid = cpid;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Integer getId() {

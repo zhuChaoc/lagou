@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--StudentDao接口的映射文件-->
+<!--namespace指定该文件映射接口的全限定名-->
+<mapper namespace="com.newer.mapper.JobMapper">
+    <!--自定义查询结果映射(嵌套结果:表连接)-->
+    <resultMap id="job1" type="com.newer.domain.Job">
+        <!--定义主键的映射-->
+        <id property="id" column="aid"/>
+        <result property="jobType" column="jobtype"/>
+        <result property="jobName" column="jobname"/>
+        <result property="minSal" column="Minsal"/>
+        <result property="maxSal" column="maxsal"/>
+        <result property="jobCity" column="Jobcity"/>
+        <result property="jobExperience" column="Jobexperience"/>
+        <result property="jobEducation" column="Jobeducation"/>
+        <result property="jobLightPoint" column="Joblightpoint"/>
+        <result property="jobInfo" column="jobinfo"/>
+        <result property="jobAddress" column="Jobaddress"/>
+        <result property="publishTime" column="publishtime"/>
+        <result property="state" column="state"/>
+        <result property="subTimes" column="Subtimes"/>
+        <association property="company" javaType="com.newer.domain.Company">
+            <id property="id" column="cid"/>
+            <result property="cpName" column="cpname"/>
+            <result property="cpCity" column="cpcity"/>
+            <result property="cpArea" column="cparea"/>
+            <result property="cpSize" column="cpsize"/>
+            <result property="cpDevelop" column="cpdevelop"/>
+            <result property="cpShortInfo" column="cpshortinfo"/>
+        </association>
+    </resultMap>
+</mapper>  

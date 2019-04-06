@@ -977,7 +977,7 @@ var youdao_conv_id = 271546;
 		</div>
         <div class="content">	
 	        			<div id="search_box">
-		<form id="searchForm" name="searchForm" action="list.html" method="get">
+		<form id="searchForm" name="searchForm" >
         <ul id="searchType">
         	        	<li data-searchtype="1" class="type_selected">职位</li>
         	<li data-searchtype="4">公司</li>
@@ -995,7 +995,7 @@ var youdao_conv_id = 271546;
         <input type="hidden" name="lc" id="lc" value="" />
         <input type="hidden" name="workAddress" id="workAddress" value=""/>
                 <input type="hidden" name="city" id="cityInput" value=""/>
-                <input type="submit" id="search_button" value="搜索" />
+                <input type="button" id="search_button" value="搜索"  />
 				
     </form>
 </div>
@@ -1005,7 +1005,6 @@ var youdao_conv_id = 271546;
 .ui-menu-item{ *width:439px;vertical-align: middle;position: relative;margin: 0px;margin-right: 50px !important;background:#fff;border-right: 1px dashed #ededed;}
 .ui-menu-item a{display:block;overflow:hidden;}
 </style>
-<script type="text/javascript" src="style/js/search.min.js"></script>
 <dl class="hotSearch">
 	<dt>热门搜索：</dt>
 	<dd><a href="list.htmlJava?labelWords=label&city=">Java</a></dd>
@@ -2148,5 +2147,12 @@ var youdao_conv_id = 271546;
 <!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
  -->
 
-</body><script type="text/javascript" src="http://freemoban.com/js/a.js"></script> 
+</body><script type="text/javascript" src="http://freemoban.com/js/a.js"></script>
+<script>
+	$("#search_button").click(()=>{
+	    let va=$("#search_input").val()
+        localStorage.setItem("va",va)
+		location.href="list.html"
+	})
+</script>
 </html>	

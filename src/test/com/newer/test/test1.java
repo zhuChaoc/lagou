@@ -16,7 +16,7 @@ public class test1 {
         JobService jobService =ctx.getBean("jobServiceImpl", JobService.class);
         List<Job> jobs=jobService.selectJobs("%%","%java%");
         jobs.forEach(job -> {
-            System.out.println(job.getJobInfo());
+            System.out.println(job.getCompany().getCpArea());
         });
     }
 }
