@@ -2,7 +2,6 @@ package com.newer.controller;
 import com.newer.domain.Job;
 import com.newer.service.CompanyService;
 import com.newer.service.JobService;
-import com.newer.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -22,4 +22,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     public int selectEamil(String EMAIL) {
         return jobSeekerMapper.selectEamil(EMAIL);
     }
+
+    @Override
+    public JobSeeker selectJobSeeker(String EMAIL, String PWD) {
+        return jobSeekerMapper.selectJobSeeker(EMAIL,PWD);
+    }
 }
