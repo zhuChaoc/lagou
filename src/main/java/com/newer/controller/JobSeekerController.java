@@ -47,7 +47,7 @@ public class JobSeekerController {
     }
 
     @RequestMapping("/login")
-    public Map<String,Object> selectJobs(String email, String password, HttpSession session){
+    public Map<String,Object> selectjobSeeker(String email, String password, HttpSession session){
         password=MD5.getInstance().getMD5ofStr(password);
         JobSeeker jobSeeker=jobSeekerService.selectJobSeeker(email, password);
         Map<String,Object> map=new HashMap<>();
@@ -58,6 +58,13 @@ public class JobSeekerController {
             map.put("success",false);
             map.put("msg","用户名或密码错误");
         }
+        return map;
+    }
+    @RequestMapping("/getUser")
+    public Map<String,Object> getUser(HttpSession session){
+        JobSeeker jobSeeker= (JobSeeker) session.getAttribute("jobSeeker");
+        Map<String,Object> map=new HashMap<>();
+        map.put("jobSeeker",jobSeeker);
         return map;
     }
 }

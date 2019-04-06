@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class JobSeeker implements Serializable {
     private Integer JID;
     private String EMAIL;
+    private String SEX;
     private String PWD;
     private String JNAME;
     private String AGE;
@@ -12,7 +13,14 @@ public class JobSeeker implements Serializable {
     private String WORKTIME;
     private String MOBILE;
     private String CITY;
-    private String SEEKER_PIC;//目标工作
+    private String SEEKER_PIC;//求职者头像
+    public String getSEX() {
+        return SEX;
+    }
+
+    public void setSEX(String SEX) {
+        this.SEX = SEX;
+    }
 
     public Integer getJID() {
         return JID;
