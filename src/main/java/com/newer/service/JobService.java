@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface JobService {
     List<Job> selectJobs(String jobType,String jobName);
+    List<Job> selectNewJobs();
 }

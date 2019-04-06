@@ -19,10 +19,17 @@ public class JobController {
     @Autowired
     private CompanyService companyService;
     @RequestMapping("/select")
-    public Map<String,Object> insertJobSeeker(String jobType,String jobName){
+    public Map<String,Object> selectJobs(String jobType,String jobName){
         jobType="%"+jobType+"%";
         jobName="%"+jobName+"%";
         List<Job> jobs=jobService.selectJobs(jobType,jobName);
+        Map<String,Object> map=new HashMap<>();
+        map.put("jobs",jobs);
+        return map;
+    }
+    @RequestMapping("/selectNew")
+    public Map<String,Object> selectNewJobs(){
+        List<Job> jobs=jobService.selectNewJobs();
         Map<String,Object> map=new HashMap<>();
         map.put("jobs",jobs);
         return map;
