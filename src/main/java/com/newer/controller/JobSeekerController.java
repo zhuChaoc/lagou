@@ -1,23 +1,17 @@
 package com.newer.controller;
-
-import com.newer.domain.Job;
 import com.newer.domain.JobSeeker;
 import com.newer.service.JobSeekerService;
 import com.newer.util.MD5;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -92,7 +86,7 @@ public class JobSeekerController {
         return map;
     }
     @RequestMapping("/image")
-    public Map<String,Object> changeImg(MultipartFile pic, HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException {
+    public Map<String,Object> changeImg(MultipartFile pic, HttpServletRequest request,HttpSession session) throws IOException {
         JobSeeker jobSeeker= (JobSeeker) session.getAttribute("jobSeeker");
         Map<String,Object> map=new HashMap<>();
         // 获取图片原始文件名
