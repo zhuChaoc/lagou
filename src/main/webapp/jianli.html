@@ -94,7 +94,7 @@
             			</span>
             			<div class="m_portrait">
 	                    	<div></div>
-	                    	<img width="120" height="120" alt="jason" src="style/images/default_headpic.png">
+	                    	<img width="120" height="120" alt="jason" id="touxiang">
 	                    </div>
             		</div><!--end .basicShow-->
 
@@ -208,16 +208,21 @@
 						      <span>上传自己的头像</span>
 						  </div>
 						  <div class="portraitShow dn" id="portraitShow">
-						    <img width="120" height="120" src="">
+						    <img width="120" height="120" src="" id="htouxiang">
 						    <span>更换头像</span>
 						  </div>
-						  <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="img_check(this,'h/resume/uploadPhoto.json','headPic');" name="headPic" id="headPic" class="myfiles">
-							<!-- <input type="hidden" id="headPicHidden" /> -->
+
+							<form id="jvForm"  enctype="multipart/form-data">
+							<input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="uploadPic()" name="pic" id="pic" class="myfiles">
+							</form>
+								<!-- <input type="hidden" id="headPicHidden" /> -->
 						  	<em>
 						                  尺寸：120*120px <br>   
 						                  大小：小于5M
 						  	</em>
 						  	<span style="display:none;" id="headPic_error" class="error"></span>
+
+
 						</div><!--end .new_portrait-->
             		</div><!--end .basicEdit-->
             		<input type="hidden" id="nameVal" value="jason">
@@ -1530,14 +1535,36 @@ $(function(){
 			} else {
                 $("#woman").attr('checked', 'true')
 			}
-			$()
             $("#topDegreeVal").val(data.jobSeeker.education)
             $("#workyearVal").val(data.jobSeeker.worktime)
             $("#telVal").val(data.jobSeeker.mobile)
             $("#emailVal").val(data.jobSeeker.email)
+            $("#touxiang").attr('src',"images/"+data.jobSeeker.seeker_PIC)
+            $("#htouxiang").attr('src',"images/"+data.jobSeeker.seeker_PIC)
         }
     })
 });
+
+function uploadPic() {
+    $.ajax({
+        // 规定把请求发送到那个URL
+        url: "seeker/image",
+        // 请求方式
+        type: "post",
+        data:new FormData($("#jvForm")[0]),
+        cache: false,
+        // 服务器响应的数据类型
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        // 请求成功时执行的回调函数
+        success: function(data) {
+            // 图片显示地址
+            $("#touxiang").attr("src","images/"+data.path);
+            $("#htouxiang").attr("src","images/"+data.path);
+        }
+    })
+}
 
 function  TJ() {
     $.ajax({
@@ -1545,7 +1572,7 @@ function  TJ() {
         type: "get",
         dataType: "json",
         data:{"JNAME":$("#name").val(),"SEX":$('input[name="gender"]:checked').val(),"EDUCATION":$("#topDegree").val(),
-            "WORKTIME":$("#workyear").val(),"EMAIL":$("#email").val(),"MOBILE":$("#tel").val(),"SEEKER_PIC":"1.jpg"},
+            "WORKTIME":$("#workyear").val(),"EMAIL":$("#email").val(),"MOBILE":$("#tel").val()},
         success: (data) => {
             if (data.suc){
                 $("#uname").text(data.jobSeeker.jname)
@@ -1559,7 +1586,6 @@ function  TJ() {
                 } else {
                     $("#woman").attr('checked', 'true')
                 }
-                $()
                 $("#topDegreeVal").val(data.jobSeeker.education)
                 $("#workyearVal").val(data.jobSeeker.worktime)
                 $("#telVal").val(data.jobSeeker.mobile)

@@ -15,6 +15,8 @@ public interface JobSeekerMapper {
      @Select("select * from jobseeker where EMAIL=#{EMAIL} and PWD=#{PWD}")
      JobSeeker selectJobSeeker(@Param("EMAIL") String EMAIL,@Param("PWD") String PWD);
      @Update("update jobseeker set JNAME=#{JNAME},EDUCATION=#{EDUCATION}," +
-             "SEX=#{SEX},WORKTIME=#{WORKTIME},EMAIL=#{EMAIL},MOBILE=#{MOBILE},SEEKER_PIC=#{SEEKER_PIC} where JID=#{JID}")
+             "SEX=#{SEX},WORKTIME=#{WORKTIME},EMAIL=#{EMAIL},MOBILE=#{MOBILE} where JID=#{JID}")
      int updateJobSeeker(JobSeeker jobSeeker);
+     @Update("update jobseeker set SEEKER_PIC=#{SEEKER_PIC} where JID=#{JID}")
+     int updatePic(JobSeeker jobSeeker);
 }

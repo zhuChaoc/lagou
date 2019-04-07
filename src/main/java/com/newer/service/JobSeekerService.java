@@ -8,4 +8,5 @@ public interface JobSeekerService {
     int selectEamil(String EMAIL);
     JobSeeker selectJobSeeker(String EMAIL,String PWD);
     int updateJobSeeker(JobSeeker jobSeeker);
+    int updatePic(JobSeeker jobSeeker);
 }

@@ -32,4 +32,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     public int updateJobSeeker(JobSeeker jobSeeker) {
         return jobSeekerMapper.updateJobSeeker(jobSeeker);
     }
+
+    @Override
+    public int updatePic(JobSeeker jobSeeker) {
+        return jobSeekerMapper.updatePic(jobSeeker);
+    }
 }
