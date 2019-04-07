@@ -67,4 +67,22 @@ public class JobSeekerController {
         map.put("jobSeeker",jobSeeker);
         return map;
     }
+    @RequestMapping("/update")
+    public Map<String,Object> getUser(JobSeeker jobSeeker,HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        String email=((JobSeeker) session.getAttribute("jobSeeker")).getEMAIL();
+        String pwd=((JobSeeker) session.getAttribute("jobSeeker")).getPWD();
+        Integer JID=((JobSeeker) session.getAttribute("jobSeeker")).getJID();
+        jobSeeker.setJID(JID);
+        if (jobSeekerService.updateJobSeeker(jobSeeker)>0){
+            jobSeeker=jobSeekerService.selectJobSeeker(email,pwd);
+            session.setAttribute("jobSeeker",jobSeeker);
+            map.put("jobSeeker",jobSeeker);
+            map.put("suc",true);
+        }else {
+            map.put("jobSeeker",jobSeeker);
+            map.put("suc",false);
+        }
+        return map;
+    }
 }

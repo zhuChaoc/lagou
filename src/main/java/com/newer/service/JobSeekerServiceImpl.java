@@ -27,4 +27,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     public JobSeeker selectJobSeeker(String EMAIL, String PWD) {
         return jobSeekerMapper.selectJobSeeker(EMAIL,PWD);
     }
+
+    @Override
+    public int updateJobSeeker(JobSeeker jobSeeker) {
+        return jobSeekerMapper.updateJobSeeker(jobSeeker);
+    }
 }

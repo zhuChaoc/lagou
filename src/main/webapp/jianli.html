@@ -197,7 +197,7 @@
 						    <tr>
 						      <td></td> 
 						      <td colspan="3">
-						          <input type="submit" value="保 存" class="btn_profile_save">
+						          <input type="submit" value="保 存" class="btn_profile_save" id="saveInfo" onclick="TJ()">
 						          <a class="btn_profile_cancel" href="javascript:;">取 消</a>
 						      </td>
 						    </tr>
@@ -1537,9 +1537,40 @@ $(function(){
             $("#emailVal").val(data.jobSeeker.email)
         }
     })
-
-
 });
+
+function  TJ() {
+    $.ajax({
+        url: "seeker/update",
+        type: "get",
+        dataType: "json",
+        data:{"JNAME":$("#name").val(),"SEX":$('input[name="gender"]:checked').val(),"EDUCATION":$("#topDegree").val(),
+            "WORKTIME":$("#workyear").val(),"EMAIL":$("#email").val(),"MOBILE":$("#tel").val(),"SEEKER_PIC":"1.jpg"},
+        success: (data) => {
+            if (data.suc){
+                $("#uname").text(data.jobSeeker.jname)
+                let $s=`${data.jobSeeker.jname} |  ${data.jobSeeker.age} |    ${data.jobSeeker.education} |  ${data.jobSeeker.worktime}工作经验\n
+            ${data.jobSeeker.mobile} | ${data.jobSeeker.email}  `
+                $("#shortxx").text($s)
+                $("#nameVal").val(data.jobSeeker.jname)
+                $("#genderVal").val(data.jobSeeker.sex)
+                if (data.jobSeeker.sex=="男"){
+                    $("#man").attr('checked', 'true')
+                } else {
+                    $("#woman").attr('checked', 'true')
+                }
+                $()
+                $("#topDegreeVal").val(data.jobSeeker.education)
+                $("#workyearVal").val(data.jobSeeker.worktime)
+                $("#telVal").val(data.jobSeeker.mobile)
+                $("#emailVal").val(data.jobSeeker.email)
+				alert("保存成功")
+            }else{
+                alert("保存失败")
+			}
+        }
+    })
+}
 </script>
 			<div class="clear"></div>
 			<input type="hidden" value="97fd449bcb294153a671f8fe6f4ba655" id="resubmitToken">
