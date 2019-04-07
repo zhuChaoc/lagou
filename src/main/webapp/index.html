@@ -977,11 +977,10 @@
 	        			<div id="search_box">
 		<form id="searchForm" name="searchForm" >
         <ul id="searchType">
-        	        	<li data-searchtype="1" class="type_selected">职位</li>
-        	<li data-searchtype="4">公司</li>
+        	        	<li data-searchtype="1" class="type_selected">求职</li>
         	        </ul>
         <div class="searchtype_arrow"></div>
-        <input type="text" id="search_input" name = "kd"  tabindex="1" value=""  placeholder="请输入职位名称，如：产品经理"  />
+        <input type="text" id="search_input" name = "kd"  tabindex="1" value=""  placeholder="请输入职位名称或公司名称"  />
         <input type="hidden" name="spc" id="spcInput" value=""/>
         <input type="hidden" name="pl" id="plInput" value=""/>
         <input type="hidden" name="gj" id="gjInput" value=""/>
@@ -1234,7 +1233,7 @@
                 $.ajax({
                     url: "job/select",
                     type: "get",
-                    data:{"jobType":"","jobName":""},
+                    data:{"jobType":"","jobName":"","cpName":""},
                     dataType: "json",
                     success: (data) => {
                         $("#hotul li").remove()

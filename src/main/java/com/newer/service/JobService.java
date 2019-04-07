@@ -5,6 +5,6 @@ import com.newer.domain.Job;
 import java.util.List;
 
 public interface JobService {
-    List<Job> selectJobs(String jobType,String jobName);
+    List<Job> selectJobs(String jobType,String jobName,String cpName);
     List<Job> selectNewJobs();
 }

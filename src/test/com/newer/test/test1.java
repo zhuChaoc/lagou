@@ -14,7 +14,7 @@ public class test1 {
         ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
         //从bean容器获取指定的bean实例
         JobService jobService =ctx.getBean("jobServiceImpl", JobService.class);
-        List<Job> jobs=jobService.selectJobs("%%","%java%");
+        List<Job> jobs=jobService.selectJobs("%%","%java%","%%");
         jobs.forEach(job -> {
             System.out.println(job.getCompany().getCpArea());
         });

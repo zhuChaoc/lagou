@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface JobMapper {
    @ResultMap(value = "com.newer.mapper.JobMapper.job1")
-   @Select("select a.id aid,a.*,c.id cid,c.* from job a left join company c on a.cpid=c.id where jobtype like #{jobType} or jobname like #{jobName} order by Subtimes desc")
-    List<Job> selectJobs(@Param("jobType")String jobType,@Param("jobName")String jobName);
+   @Select("select a.id aid,a.*,c.id cid,c.* from job a left join company c on a.cpid=c.id where jobtype like #{jobType} or jobname like #{jobName} or cpname like #{cpName} order by Subtimes desc")
+    List<Job> selectJobs(@Param("jobType")String jobType,@Param("jobName")String jobName,@Param("cpName")String cpName);
    @ResultMap(value = "com.newer.mapper.JobMapper.job1")
    @Select("select a.id aid,a.*,c.id cid,c.* from job a left join company c on a.cpid=c.id order by publishtime desc")
     List<Job> selectNewJobs();

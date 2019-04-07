@@ -15,8 +15,8 @@ public class JobServiceImpl implements JobService{
     @Autowired
     private JobMapper jobMapper;
     @Override
-    public List<Job> selectJobs(String jobType, String jobName) {
-        return jobMapper.selectJobs(jobType,jobName);
+    public List<Job> selectJobs(String jobType, String jobName,String cpName) {
+        return jobMapper.selectJobs(jobType,jobName,cpName);
     }
 
     @Override

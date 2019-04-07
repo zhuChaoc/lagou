@@ -92,7 +92,8 @@ span.error{display:block; margin:5px 0 10px 0; font-size:14px; color:#ff6a6a;tex
 #search_button:hover{background:#028b6b;}
 #searchType{cursor:pointer;position:absolute;list-style:none;padding:0;margin:0;width:98px;background:#fff;left:-2px;top:0;}
 #searchType li{font-size:16px;height:23px;line-height:24px;padding:7px 22px;border:2px solid #91cebe;display:none;}
-#searchType li.type_selected{height:23px;border-left:2px solid #019875;border-right:2px solid #019875;border-top:0;border-bottom:0;display:block;}
+#searchType li.type_selected{
+    width: 50px; height:40px;border-left:2px solid #019875;border-right:2px solid #019875;border-top:0;border-bottom:0;display:block;}
 .searchtype_arrow{ height:0;width:0;overflow: hidden;font-size: 0;line-height: 0; border-width:5px 5px 0; border-style:solid dashed; border-color:#019875 transparent transparent;-webkit-transition:all 0.4s ease 0s;-moz-transition:all 0.4s ease 0s;-ms-transition:all 0.4s ease 0s;transition:all 0.4s ease 0s; position:absolute; top:18px;left:73px;}
 .searchtype_arrow.transform{-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);transform: rotate(180deg);-webkit-transition:all 0.4s ease 0s;-moz-transition:all 0.4s ease 0s;-ms-transition:all 0.4s ease 0s;transition:all 0.4s ease 0s;}
 #sidebar{width:230px;  position: absolute; z-index:101;*position: relative; *float:left; }
@@ -949,7 +950,7 @@ a.greylink{ color:#555;font-size:18px; margin-right:60px;text-decoration:underli
 .bbs_top:hover{background-position:-25px -33px;}
 .bbs_top_cancel{width:25px;height:25px;display:block;position:absolute;right:10px;top:37px;background:url(img/bbs_icon.png) 0 -62px no-repeat;}
 .bbs_top_cancel:hover{background-position:-25px -62px;}
-.topic_create{position:abosolute;background:#91cebe;color:#fff;font-size:18px;float:right;padding:6px 12px; text-align:center;margin-bottom:10px;}
+.topic_create{background:#91cebe;color:#fff;font-size:18px;float:right;padding:6px 12px; text-align:center;margin-bottom:10px;}
 .topic_create:hover{background:#019875;color:#fff;}
 .subscribe_side ul li.bbs1{background:url(img/bbs_side.png) 0 0 no-repeat; }
 .subscribe_side ul li.bbs2{background:url(img/bbs_side.png) 0 -110px no-repeat;}

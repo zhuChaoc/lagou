@@ -18,10 +18,11 @@ public class JobController {
     @Autowired
     private CompanyService companyService;
     @RequestMapping("/select")
-    public Map<String,Object> selectJobs(String jobType,String jobName){
+    public Map<String,Object> selectJobs(String jobType,String jobName,String cpName){
         jobType="%"+jobType+"%";
         jobName="%"+jobName+"%";
-        List<Job> jobs=jobService.selectJobs(jobType,jobName);
+        cpName="%"+cpName+"%";
+        List<Job> jobs=jobService.selectJobs(jobType,jobName,cpName);
         Map<String,Object> map=new HashMap<>();
         map.put("jobs",jobs);
         return map;
