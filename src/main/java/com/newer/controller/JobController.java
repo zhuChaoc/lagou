@@ -3,9 +3,10 @@ import com.newer.domain.Job;
 import com.newer.service.CompanyService;
 import com.newer.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,4 +35,10 @@ public class JobController {
         map.put("jobs",jobs);
         return map;
     }
+ @RequestMapping("/findInfo")
+    public Job findById(Integer id){
+     System.out.println("111111");
+     System.out.println(jobService.findById(id).getCompany().getCpName());
+     return jobService.findById(id);
+ }
 }

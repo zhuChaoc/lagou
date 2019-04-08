@@ -416,6 +416,11 @@ $(function(){
 	});
 	
 });
+function job1(id) {
+	localStorage.setItem("id",id);
+}
+
+
 
 function a1() {
     $.ajax({
@@ -444,7 +449,7 @@ function a1() {
                     </div>
                     <div class="hot_pos_r">
                         <div class="apply">
-                        <a href="toudi.html" target="_blank">投个简历</a>
+                        <a href="toudi.html" onclick="job1(${job.id})" target="_blank">投个简历</a>
                         </div>
                         <div class="mb10"><a href="h/c/1712.html" title="${job.company.cpName}" target="_blank">${job.company.cpName}</a></div>
                     <span><em class="c7">领域： </em>${job.company.cpArea}</span>

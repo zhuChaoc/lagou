@@ -23,4 +23,9 @@ public class JobServiceImpl implements JobService{
     public List<Job> selectNewJobs() {
         return jobMapper.selectNewJobs();
     }
+
+    @Override
+    public Job findById(Integer id) {
+        return jobMapper.findById(id);
+    }
 }
