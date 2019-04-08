@@ -11,7 +11,7 @@ public class ProjectRecord implements Serializable {
     private String  beginMonth;//开始月份
     private String  endYear;//结束年份
     private String  endMonth;//结束月份
-    private String describe;//项目描述
+    private String xmdescribe;//项目描述
 
     public int getPid() {
         return pid;
@@ -77,11 +77,11 @@ public class ProjectRecord implements Serializable {
         this.endMonth = endMonth;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getXmdescribe() {
+        return xmdescribe;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setXmdescribe(String xmdescribe) {
+        this.xmdescribe = xmdescribe;
     }
 }

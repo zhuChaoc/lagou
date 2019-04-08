@@ -761,13 +761,13 @@
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							        	<input type="text" placeholder="项目名称" name="projectName" class="projectName">
+							        	<input type="text" placeholder="项目名称" name="projectName" class="projectName" id="wname">
 							      	</td>
 	            					<td valign="top">
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							          	<input type="text" placeholder="担任职务，如：产品负责人" name="thePost" class="thePost">
+							          	<input type="text" placeholder="担任职务，如：产品负责人" name="thePost" class="thePost" id="wjob">
 							      	</td>
 							    </tr>
 	            				<tr>
@@ -776,7 +776,7 @@
 							      	</td> 
 	            					<td>
 		            					<div class="fl">
-		            						<input type="hidden" class="projectYearStart" value="" name="projectYearStart">
+		            						<input type="hidden" class="projectYearStart" value="" name="projectYearStart" id="beginYear">
 								        	<input type="button" value="开始年份" class="profile_select_139 profile_select_normal select_projectYearStart">
 											<div class="box_projectYearStart  boxUpDown boxUpDown_139 dn" style="display: none;">
 									            <ul>
@@ -829,7 +829,7 @@
 									        </div>
 										</div>
 										<div class="fl">
-									        <input type="hidden" class="projectMonthStart" value="" name="projectMonthStart">
+									        <input type="hidden" class="projectMonthStart" value="" name="projectMonthStart" id="beginMonth">
 								        	<input type="button" value="开始月份" class="profile_select_139 profile_select_normal select_projectMonthStart">
 											<div style="display: none;" class="box_projectMonthStart boxUpDown boxUpDown_139 dn">
 									            <ul>
@@ -844,7 +844,7 @@
 							      	</td> 
 	            					<td>
 	            						<div class="fl">
-		            						<input type="hidden" class="projectYearEnd" value="" name="projectYearEnd">
+		            						<input type="hidden" class="projectYearEnd" value="" name="projectYearEnd" id="endYear">
 								        	<input type="button" value="结束年份" class="profile_select_139 profile_select_normal select_projectYearEnd">
 											<div class="box_projectYearEnd  boxUpDown boxUpDown_139 dn" style="display: none;">
 									            <ul>
@@ -898,7 +898,7 @@
 									        </div>
 										</div>
 										<div class="fl">
-									        <input type="hidden" class="projectMonthEnd" value="" name="projectMonthEnd">
+									        <input type="hidden" class="projectMonthEnd" value="" name="projectMonthEnd" id="endMonth">
 								        	<input type="button" value="结束月份" class="profile_select_139 profile_select_normal select_projectMonthEnd">
 											<div style="display: none;" class="box_projectMonthEnd boxUpDown boxUpDown_139 dn">
 									            <ul>
@@ -912,7 +912,7 @@
 	            				<tr>
 	            					<td valign="top"></td> 
 									<td colspan="3">
-										<textarea class="projectDescription s_textarea" name="projectDescription" placeholder="项目描述"></textarea>
+										<textarea class="projectDescription s_textarea" name="projectDescription" placeholder="项目描述" id="describe"></textarea>
 										<div class="word_count">你还可以输入 <span>500</span> 字</div>
 									</td>
 	            				</tr>
@@ -925,7 +925,7 @@
 	            				<tr>
 	            					<td valign="top"></td> 
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="abc()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1543,7 +1543,44 @@ $(function(){
             $("#htouxiang").attr('src',"images/"+data.jobSeeker.seeker_PIC)
         }
     })
+    showXMJY()
 });
+function showXMJY() {
+    $.ajax({
+        url: "record/select",
+        type: "get",
+        data:{"reid":1},
+        dataType: "json",
+        success: (data) => {
+           data.list.forEach(project=>{
+               let $p = $(`<h3>项目名称：${project.wname}</h3>
+             <p>项目周期：${project.beginYear}.${project.beginMonth}-${project.endYear}.${project.endMonth}</p>
+                   <p>职责：${project.wjob}</p>
+                   <p>项目描述：${project.xmdescribe}</p>
+                    <br>`)
+               $("#projectExperience").append($p)
+			})
+        }
+    })
+}
+function abc() {
+    $.ajax({
+        url: "record/insert",
+        type: "get",
+		data:{"reid":1,"wname":$("#wname").val(),"wjob":$("#wjob").val(),
+            "beginYear":$("#beginYear").val(),"beginMonth":$("#beginMonth").val(),
+            "endYear":$("#endYear").val(),"endMonth":$("#endMonth").val(),
+            "describe":$("#describe").val() },
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("添加成功")
+			} else{
+                alert("添加失败")
+			}
+        }
+    })
+}
 
 function uploadPic() {
     $.ajax({
