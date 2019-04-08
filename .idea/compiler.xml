@@ -9,6 +9,8 @@
         <module name="lagou" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel>
+      <module name="lagou" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
