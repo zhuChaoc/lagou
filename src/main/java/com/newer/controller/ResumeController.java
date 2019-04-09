@@ -1,0 +1,35 @@
+package com.newer.controller;
+
+import com.newer.domain.JobSeeker;
+import com.newer.domain.Resume;
+import com.newer.service.ResumeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/resume")
+public class ResumeController {
+    @Autowired
+    private ResumeService resumeService;
+
+    @RequestMapping("/updatezwms")
+    public Map<String,Object> updateMyDescribe(Resume resume){
+        Map<String,Object> map=new HashMap<>();
+        int result=resumeService.updateMyDescribe(resume);
+        map.put("result",result);
+        return map;
+    }
+    @RequestMapping("/select")
+    public Map<String,Object> selectMyDescribe(Integer reid){
+        Map<String,Object> map=new HashMap<>();
+        Resume resume=resumeService.selectMyDescribe(reid);
+        map.put("resume",resume);
+        return map;
+    }
+
+}

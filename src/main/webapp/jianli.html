@@ -1287,13 +1287,13 @@
 	            			<table>
 	            				<tbody><tr>
 									<td colspan="2">
-										<textarea class="selfDescription s_textarea" name="selfDescription" placeholder=""></textarea>
+										<textarea class="selfDescription s_textarea" name="selfDescription" placeholder="" id="myms"></textarea>
 										<div class="word_count">你还可以输入 <span>500</span> 字</div>
 									</td>
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="zwms()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1303,7 +1303,7 @@
             		            		<div class="descriptionAdd pAdd">
             		            			描述你的性格、爱好以及吸引人的经历等，<br>
 						让企业了解多元化的你！
-						<span>添加自我描述</span>
+						<span>更新自我描述</span>
             		</div><!--end .descriptionAdd-->
             	</div><!--end #selfDescription-->
 
@@ -1545,6 +1545,7 @@ $(function(){
     })
     showXMJY()
     showWS()
+    showZWMS()
 });
 function showXMJY() {
     $.ajax({
@@ -1582,6 +1583,40 @@ function abc() {
         }
     })
 }
+
+function zwms() {
+    $.ajax({
+        url: "resume/updatezwms",
+        type: "get",
+        data:{"reid":1,"myDescribe":$("#myms").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("更新成功")
+            } else{
+                alert("更新失败")
+            }
+        }
+    })
+}
+function showZWMS() {
+    $.ajax({
+        url: "resume/select",
+        type: "get",
+        data:{"reid":1},
+        dataType: "json",
+        success: (data) => {
+            if (data.resume.myDescribe!=null) {
+                let $p = $(`<h3>自我描述</h3>
+             <p>${data.resume.myDescribe}</p>
+                    <br>`)
+                $("#selfDescription").append($p)
+            }
+        }
+    })
+}
+
+
 
 function workShow() {
     $.ajax({
