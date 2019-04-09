@@ -1319,18 +1319,18 @@
 	            			<table>
 	            				<tbody><tr>
 							      	<td>
-							        	<input type="text" placeholder="请输入作品链接" name="workLink" class="workLink">
+							        	<input type="text" placeholder="请输入作品链接" name="workLink" class="workLink" id="workLink">
 							      	</td>
 							    </tr>
 	            				<tr>
 									<td>
-										<textarea maxlength="100" class="workDescription s_textarea" name="workDescription" placeholder="请输入说明文字"></textarea>
+										<textarea maxlength="100" class="workDescription s_textarea" name="workDescription" placeholder="请输入说明文字" id="workDescribe"></textarea>
 										<div class="word_count">你还可以输入 <span>100</span> 字</div>
 									</td>
 	            				</tr>
 	            				<tr>
 	            					<td>
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="workShow()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1544,6 +1544,7 @@ $(function(){
         }
     })
     showXMJY()
+    showWS()
 });
 function showXMJY() {
     $.ajax({
@@ -1581,6 +1582,39 @@ function abc() {
         }
     })
 }
+
+function workShow() {
+    $.ajax({
+        url: "workShow/insert",
+        type: "get",
+        data:{"reid":1,"workLink":$("#workLink").val(),"workDescribe":$("#workDescribe").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("添加成功")
+            } else{
+                alert("添加失败")
+            }
+        }
+    })
+}
+function showWS() {
+    $.ajax({
+        url: "workShow/select",
+        type: "get",
+        data:{"reid":1},
+        dataType: "json",
+        success: (data) => {
+            data.list.forEach(ws=>{
+                let $p = $(`<h3>作品链接：${ws.workLink}</h3>
+             <p>项目描述：${ws.workDescribe}</p>
+                    <br>`)
+                $("#worksShow").append($p)
+            })
+        }
+    })
+}
+
 
 function uploadPic() {
     $.ajax({
