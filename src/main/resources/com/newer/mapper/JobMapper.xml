@@ -31,6 +31,8 @@
             <result property="cpCity" column="cpcity"/>
             <result property="cpArea" column="cparea"/>
             <result property="cpSize" column="cpsize"/>
+            <result property="cpUrl" column="cpurl"/>
+            <result property="cpLogo" column="cplogo"/>
             <result property="cpDevelop" column="cpdevelop"/>
             <result property="cpShortInfo" column="cpshortinfo"/>
         </association>
