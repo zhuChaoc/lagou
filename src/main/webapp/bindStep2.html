@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
-</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
+	<!--</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>--><style type="text/css"></style>
 <meta content="no-siteapp" http-equiv="Cache-Control">
 <link  media="handheld" rel="alternate">
 <!-- end 云适配 -->
@@ -16,52 +16,58 @@
 var ctx = "h";
 console.log(1);
 </script>
-<link href="h/images/favicon.ico" rel="Shortcut Icon">
-<link href="../style/css/style.css" type="text/css" rel="stylesheet">
-<link href="../style/css/external.min.css" type="text/css" rel="stylesheet">
-<link href="../style/css/popup.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="../style/js/jquery.1.10.1.min.js"></script>
-<script src="../style/js/jquery.lib.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="../style/js/ajaxfileupload.js"></script>
-<script src="../style/js/additional-methods.js" type="text/javascript"></script>
+	<script type="text/javascript" src="style/js/jquery-3.2.1.js"></script>
+	<!--<link href="h/images/favicon.ico" rel="Shortcut Icon">-->
+	<link href="style/css/style.css" type="text/css" rel="stylesheet">
+	<link href="style/css/external.min.css" type="text/css" rel="stylesheet">
+	<link href="style/css/popup.css" type="text/css" rel="stylesheet">
+	<script src="style/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script src="style/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script src="style/jquery.validation/1.14.0/messages_zh.js"></script>
+	<script src="style/jquery.validation/1.14.0/additional-methods.js"></script>
+	<script src="style/jquery.validation/1.14.0/jquery.form.js"></script>
+
+
 <!--[if lte IE 8]>
-    <script type="text/javascript" src="../style/js/excanvas.js"></script>
-    <![endif]-->
+	<script type="text/javascript" src="style/js/excanvas.js"></script>
+	<![endif]-->
 <script type="text/javascript">
 var youdao_conv_id = 271546; 
-</script> 
-<script src="../style/js/conv.js" type="text/javascript"></script>
-<script src="../style/js/ajaxCross.json" charset="UTF-8"></script></head>
+</script>
+	<!--
+    <script src="../style/js/conv.js" type="text/javascript"></script>
+    -->
+<script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
 <body>
 <div id="body">
 	<div id="header">
     	<div class="wrapper">
     		<a class="logo" href="h">
-    			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="../style/images/logo.png">
+    			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="../index.html">首页</a></li>
-    			<li class="current"><a href="h/c/companylist.html">公司</a></li>
-    			<li><a target="_blank" href="h/toForum.html">论坛</a></li>
+    			<li><a href="index.html">首页</a></li>
+    			<li class="current"><a href="companylist.html">公司</a></li>
+    			<li><a target="_blank" href="../toForum.html">论坛</a></li>
     				    			<li>
 	    				<a rel="nofollow" href="positions.html">简历管理</a>
 	    					    			</li>
 	    							    			<li><a rel="nofollow" href="create.html">发布职位</a></li>
 	    		    		</ul>
         	        	<dl class="collapsible_menu">
-            	<dt>
-           			<span>jason&nbsp;</span> 
-            		<span class="red dn" id="noticeDot-1"></span>
-            		<i></i>
-            	</dt>
-                                	<dd><a href="positions.html">我发布的职位</a></dd>
-                	<dd><a href="positions.html">我收到的简历</a></dd>
-                	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
-                	<dd><a href="../list.html">我要找工作</a></dd>
-                                                <dd><a href="../accountBind.html">帐号设置</a></dd>
-                                <dd class="logout"><a rel="nofollow" href="../login.html">退出</a></dd>
-            </dl>
-                                </div>
+							<dt>
+								<span> ${loginer.userName} &nbsp;</span>
+								<span class="red dn" id="noticeDot-1"></span>
+								<i></i>
+							</dt>
+							<dd><a href="positions.html">我发布的职位</a></dd>
+							<dd><a href="positions.html">我收到的简历</a></dd>
+							<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
+							<dd><a href="list.html">我要找工作</a></dd>
+							<dd><a href="accountBind.html">帐号设置</a></dd>
+							<dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
+						</dl>
+		</div>
     </div><!-- end #header -->
     <div id="container">
             <style>.ui-autocomplete{max-height:160px;overflow-y:scroll;}</style>
@@ -76,16 +82,48 @@ var youdao_conv_id = 271546;
                 	                    <form class="corp_form" id="companyNameForm">
 	                 	<input type="hidden" value="3a9b3124ee0a4adca922f2c9756d1ac1" id="resubmitToken">
 	                 	<h3><em class="redstar">*</em>公司全称  <span class="explain">（请输入与公司营业执照一致的公司全称，审核通过后不可更改）</span></h3> 
-	                   	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible">测试公司</span><input type="text" value="" placeholder="请输入与公司营业执照一致的公司全称" name="companyName" id="companyName" class="valid ui-autocomplete-input" autocomplete="off">	
+	                   	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible">测试公司</span><input type="text" value="" placeholder="请输入与公司营业执照一致的公司全称" name="cpName" id="cpName" class="valid ui-autocomplete-input" autocomplete="off">
 	                   	<input type="submit" value="提 交" id="bindSubmit">
-	                   	<a class="goback" href="h/corpCenter/bindStep1.html?update=1">返回修改邮箱地址</a>
+	                   	<a class="goback" href="bindStep1.html?update=1">返回修改邮箱地址</a>
                     </form>
                                         <div class="contactus">如有问题，请致电：010-57286997或写信给：<a href="mailto:vivi@lagou.com">vivi@lagou.com</a>，我们会尽快为你解决。</div>
                 </dd>
             </dl>
        	</div>
-<div class="dn" id="loadingDiv" style="display: none;"><img width="32" height="32" src="../style/images/ajax-loader.gif"></div>
-<script src="../style/js/services.min.js" type="text/javascript"></script>
+<div class="dn" id="loadingDiv" style="display: none;"><img width="32" height="32" src="style/images/ajax-loader.gif"></div>
+<!--<script src="../style/js/services.min.js" type="text/javascript"></script>-->
+
+<script type="text/javascript">
+	$("#companyNameForm").validate({
+		rules:{
+			cpName:{
+				required:!0}
+		},
+
+		messages:{
+			cpName:{
+			required:"请输入与公司营业执照一致的公司名称"}},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+		    console.log("测试1")
+			$(form).ajaxSubmit({
+				url:"company/bind2",
+				type:"POST",
+
+				success: function(data){
+					alert("成功")
+					location.href="bindStep3.html";
+				},
+				error: function(XmlHttpRequest, textStatus, errorThrown){
+					alert("失败")
+				}
+			});
+
+		}
+	});
+</script>
 			<div class="clear"></div>
 			<input type="hidden" value="3a9b3124ee0a4adca922f2c9756d1ac1" id="resubmitToken">
 	    	<a rel="nofollow" title="回到顶部" id="backtop"></a>
@@ -93,16 +131,16 @@ var youdao_conv_id = 271546;
 	</div><!-- end #body -->
 	<div id="footer">
 		<div class="wrapper">
-			<a rel="nofollow" target="_blank" href="h/about.html">联系我们</a>
-		    <a target="_blank" href="h/af/zhaopin.html">互联网公司导航</a>
+			<a rel="nofollow" target="_blank" href="about.html">联系我们</a>
+		    <a target="_blank" href="zhaopin.html">互联网公司导航</a>
 		    <a rel="nofollow" target="_blank" href="http://e.weibo.com/lagou720">拉勾微博</a>
 		    <a rel="nofollow" href="javascript:void(0)" class="footer_qr">拉勾微信<i></i></a>
 			<div class="copyright">&copy;2013-2014 Lagou <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">京ICP备14023790号-2</a></div>
 		</div>
 	</div>
 
-<script src="../style/js/core.min.js" type="text/javascript"></script>
-<script src="../style/js/popup.min.js" type="text/javascript"></script>
+<!--<script src="style/js/core.min.js" type="text/javascript"></script>-->
+<!--<script src="../style/js/popup.min.js" type="text/javascript"></script>-->
 
 <!--  -->
 

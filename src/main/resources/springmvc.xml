@@ -24,6 +24,15 @@
 	<!--视图解析器：默认JSP视图解析器-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
         <property name="prefix" value="/"/>
-		<property name="suffix" value=".jsp"/>
+		<property name="suffix" value=".html"/>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8">
+
+ 		<property name="maxUploadSize">
+		 	<value>209715200</value><!-- 200MB -->
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value><!-- 4KB大小读写 -->
+		</property>
 	</bean>
 </beans>

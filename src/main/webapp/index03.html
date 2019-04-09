@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
-</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
+	<!--</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>--><style type="text/css"></style>
 <meta content="no-siteapp" http-equiv="Cache-Control">
 <link  media="handheld" rel="alternate">
 <!-- end 云适配 -->
@@ -16,32 +16,36 @@
 var ctx = "http://www.lagou.com";
 console.log(1);
 </script>
-<link href="http://www.lagou.com/images/favicon.ico" rel="Shortcut Icon">
-<link href="../style/css/style.css" type="text/css" rel="stylesheet">
-<link href="../style/css/external.min.css" type="text/css" rel="stylesheet">
-<link href="../style/css/popup.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="../style/js/jquery.1.10.1.min.js"></script>
-<script src="../style/js/jquery.lib.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="../style/js/ajaxfileupload.js"></script>
-<script src="../style/js/additional-methods.js" type="text/javascript"></script>
+	<script type="text/javascript" src="style/js/jquery-3.2.1.js"></script>
+	<!--<link href="h/images/favicon.ico" rel="Shortcut Icon">-->
+	<link href="style/css/style.css" type="text/css" rel="stylesheet">
+	<link href="style/css/external.min.css" type="text/css" rel="stylesheet">
+	<link href="style/css/popup.css" type="text/css" rel="stylesheet">
+	<script src="style/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script src="style/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script src="style/jquery.validation/1.14.0/messages_zh.js"></script>
+	<script src="style/jquery.validation/1.14.0/additional-methods.js"></script>
+	<script src="style/jquery.validation/1.14.0/jquery.form.js"></script>
 <!--[if lte IE 8]>
-    <script type="text/javascript" src="../style/js/excanvas.js"></script>
-    <![endif]-->
+	<script type="text/javascript" src="style/js/excanvas.js"></script>
+	<![endif]-->
 <script type="text/javascript">
 var youdao_conv_id = 271546; 
-</script> 
-<script src="../style/js/conv.js" type="text/javascript"></script>
-<script src="../style/js/ajaxCross.json" charset="UTF-8"></script></head>
+</script>
+	<!--
+    <script src="../style/js/conv.js" type="text/javascript"></script>
+    -->
+<script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
 <body>
 <div id="body">
 	<div id="header">
     	<div class="wrapper">
-    		<a class="logo" href="../index.html">
-    			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="../style/images/logo.png">
+    		<a class="logo" href="index.html">
+    			<img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="style/images/logo.png">
     		</a>
     		<ul id="navheader" class="reset">
-    			<li><a href="../index.html">首页</a></li>
-    			<li class="current"><a href="../companylist.html">公司</a></li>
+    			<li><a href="index.html">首页</a></li>
+    			<li class="current"><a href="companylist.html">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
     				    			<li>
 	    				<a rel="nofollow" href="">简历管理</a>
@@ -50,16 +54,16 @@ var youdao_conv_id = 271546;
 	    		    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>jason&nbsp;</span> 
+           			<span>${loginer.userName}</span>
             		<span class="red dn" id="noticeDot-1"></span>
             		<i></i>
             	</dt>
                                 	<dd><a href="positions.html">我发布的职位</a></dd>
                 	<dd><a href="positions.html">我收到的简历</a></dd>
                 	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
-                	<dd><a href="../jianli.html">我要找工作</a></dd>
-                                                <dd><a href="../accountBind.html">帐号设置</a></dd>
-                                <dd class="logout"><a rel="nofollow" href="../login.html">退出</a></dd>
+                	<dd><a href="jianli.html">我要找工作</a></dd>
+                                                <dd><a href="accountBind.html">帐号设置</a></dd>
+                                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
             </dl>
                                 </div>
     </div><!-- end #header -->
@@ -73,12 +77,12 @@ var youdao_conv_id = 271546;
                 </dt>
                 <dd>
                 	<div class="c_text">背景深、规模大、发展快、氛围好…用优势吸引求职者吧！</div>
-                 	<img width="668" height="56" class="c_steps" alt="第五步" src="../style/images/step5.png">
+                 	<img width="668" height="56" class="c_steps" alt="第五步" src="style/images/step5.png">
                     <!-- action="http://www.lagou.com/c/saveProfile.json" -->
-                    <form method="post" action="http://www.lagou.com/c/saveProfile.json" id="infoForm">
+                    <form method="post"  id="infoForm">
                     	<input type="hidden" name="companyId" value="25927">
                         <h3>公司介绍</h3> 
-                        <textarea placeholder="请分段详细描述公司简介、企业文化等" name="companyProfile" id="companyProfile"></textarea>	
+                        <textarea placeholder="请分段详细描述公司简介、企业文化等" name="cpLongInfo" id="cpLongInfo"></textarea>
                         <div class="word_count">你还可以输入 <span>1000</span> 字</div>
                     	<div class="clear"></div>
                     	<input type="button" id="step5Submit" value="保存，完成" class="btn_big fr">
@@ -86,7 +90,23 @@ var youdao_conv_id = 271546;
                 </dd>
             </dl>
        	</div>
-<script src="../style/js/step5.min.js" type="text/javascript"></script>
+
+
+<script>
+	$("#step5Submit").click(()=>{
+		$.ajax({
+			url:"company/index3",
+			data:{cpLongInfo:$("#cpLongInfo").val()},
+			type:"POST",
+			dataType:"json",
+			success:(data)=>{
+				alert("成功")
+				location.href="myhome.html"
+			}
+		})
+	})
+</script>
+<!--<script src="../style/js/step5.min.js" type="text/javascript"></script>-->
 
 			<div class="clear"></div>
 			<input type="hidden" value="" id="resubmitToken">
@@ -95,7 +115,7 @@ var youdao_conv_id = 271546;
 	</div><!-- end #body -->
 	<div id="footer">
 		<div class="wrapper">
-			<a rel="nofollow" target="_blank" href="../about.html">联系我们</a>
+			<a rel="nofollow" target="_blank" href="about.html">联系我们</a>
 		    <a target="_blank" href="http://www.lagou.com/af/zhaopin.html">互联网公司导航</a>
 		    <a rel="nofollow" target="_blank" href="http://e.weibo.com/lagou720">拉勾微博</a>
 		    <a rel="nofollow" href="javascript:void(0)" class="footer_qr">拉勾微信<i></i></a>
@@ -103,8 +123,10 @@ var youdao_conv_id = 271546;
 		</div>
 	</div>
 
-<script src="../style/js/core.min.js" type="text/javascript"></script>
-<script src="../style/js/popup.min.js" type="text/javascript"></script>
+<!--
+<script src="style/js/core.min.js" type="text/javascript"></script>
+<script src="style/js/popup.min.js" type="text/javascript"></script>
+-->
 
 <!--  -->
 

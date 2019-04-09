@@ -5,15 +5,15 @@ import java.io.Serializable;
 /**
  * 登录者-公司关联类
  */
-public class User_Company implements Serializable {
+public class UserCompany implements Serializable {
     private Integer id;
     private Integer userId;//登录者id
     private Integer cpId;//公司id
 
-    public User_Company() {
+    public UserCompany() {
     }
 
-    public User_Company(Integer id, Integer userId, Integer cpId) {
+    public UserCompany(Integer id, Integer userId, Integer cpId) {
         this.id = id;
         this.userId = userId;
         this.cpId = cpId;

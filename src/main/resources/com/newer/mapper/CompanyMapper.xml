@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口的映射文件-->
+<!--namespace指定该文件映射接口的全限定名-->
+<mapper namespace="com.newer.mapper.CompanyMapper">
+  <resultMap id="com1" type="Company">
+    <id property="id" column="id"/>
+    <result property="cpName" column="cpname"/>
+    <result property="cpPhone" column="cpphone"/>
+    <result property="cpEmail" column="cpemail"/>
+    <result property="cpShort" column="cpshort"/>
+    <result property="cpLogo" column="cplogo"/>
+    <result property="cpLicense" column="cplicense"/>
+    <result property="cpUrl" column="cpurl"/>
+    <result property="cpCity" column="cpcity"/>
+    <result property="cpArea" column="cparea"/>
+    <result property="cpSize" column="cpsize"/>
+    <result property="cpDevelop" column="cpdevelop"/>
+    <result property="cpInvestor" column="cpinvestor"/>
+    <result property="cpShortInfo" column="cpshortinfo"/>
+    <association property="cpInfo" javaType="com.newer.domain.CpInfo">
+      <id property="id" column="cpinfoid"/>
+      <result property="cpTig" column="cptig"/>
+      <result property="cpLongInfo" column="cplonginfo"/>
+    </association>
+    <collection property="crTeams" ofType="com.newer.domain.CrTeam">
+      <id property="id" column="crid"/>
+      <result property="createName" column="createname"/>
+      <result property="job" column="job"/>
+      <result property="ownUrl" column="ownurl"/>
+      <result property="ownInfo" column="owninfo"/>
+      <result property="ownPhoto" column="ownphoto"/>
+    </collection>
+    <collection property="cpProducts" ofType="com.newer.domain.CpProduct">
+      <id property="id" column="productid"/>
+      <result property="productName" column="productname"/>
+      <result property="productUrl" column="producturl"/>
+      <result property="productInfo" column="productinfo"/>
+      <result property="productPhoto" column="productphoto"/>
+    </collection>
+  </resultMap>
+
+  <select id="findAll" resultMap="com1">
+    select cp.id,cpname,cpphone,cpemail,cpshort,cplogo,cplicense,cpurl,cpcity,cparea,cpsize,cpdevelop,cpinvestor,
+      cpshortinfo, ci.id cpinfoid,cptig,cplonginfo,cr.id crid,createname,job,ownurl,owninfo,ownphoto,
+      product.id productid,productname,producturl,productinfo,productphoto from
+       ((lagou.company cp join lagou.cpinfo ci on cp.id=ci.cpid) join lagou.crteam cr on cp.id=cr.cpid)
+        join lagou.cpproduct product on cp.id=product.cpid
+  </select>
+</mapper>  
