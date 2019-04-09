@@ -1,3 +1,14 @@
+DROP TABLE IF EXISTS `etjob`;
+CREATE TABLE `etjob` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city` varchar(255) NOT NULL,
+  `jobType` varchar(255) NOT NULL,
+  `expectJob` varchar(255) NOT NULL,
+  `expectSal` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 ALTER TABLE resume ADD wsid int NULL;
 ALTER TABLE resume ADD wrid int NULL;
 ALTER TABLE resume ADD pid int NULL;
