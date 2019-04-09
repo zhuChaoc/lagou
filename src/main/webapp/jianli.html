@@ -960,8 +960,8 @@
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							      		<input type="hidden" class="degree" value="" name="degree">
-							        	<input type="button" value="学历" class="profile_select_287 profile_select_normal select_degree">
+							      		<input type="hidden" class="degree" value="" name="degree" id="educationBackGround">
+							        	<input type="button" value="学历" class="profile_select_287 profile_select_normal select_degree" >
 										<div class="box_degree boxUpDown boxUpDown_287 dn" style="display: none;">
 								            <ul>
 								        										        			<li>大专</li>
@@ -985,7 +985,7 @@
 							      	</td> 
 	            					<td>
 		            					<div class="fl">
-		            						<input type="hidden" class="schoolYearStart" value="" name="schoolYearStart">
+		            						<input type="hidden" class="schoolYearStart" value="" name="schoolYearStart" id="eduBeginYear">
 								        	<input type="button" value="开始年份" class="profile_select_139 profile_select_normal select_schoolYearStart">
 											<div class="box_schoolYearStart boxUpDown boxUpDown_139 dn" style="display: none;">
 									            <ul>
@@ -1039,7 +1039,7 @@
 										</div>
 										<div class="fl">
 		            						<input type="hidden" class="schoolYearEnd" value="" name="schoolYearEnd">
-								        	<input type="button" value="结束年份" class="profile_select_139 profile_select_normal select_schoolYearEnd">
+								        	<input type="button" value="结束年份" class="profile_select_139 profile_select_normal select_schoolYearEnd" id="eduEndYear">
 											<div style="display: none;" class="box_schoolYearEnd  boxUpDown boxUpDown_139 dn">
 									            <ul>
 									        											        			<li>2021</li>
@@ -1103,7 +1103,7 @@
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="Edu()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1122,7 +1122,7 @@
 							        	<span class="redstar">*</span>
 							      	</td> 
 							      	<td>
-							        	<input type="text" placeholder="学校名称" name="schoolName" class="schoolName">
+							        	<input type="text" placeholder="学校名称" name="schoolName" class="schoolName" id="schoolName">
 							      	</td>
 							      	<td valign="top">
 							        	<span class="redstar">*</span>
@@ -1146,7 +1146,7 @@
 							        	<span class="redstar">*</span>
 							      	</td> 
 	            					<td>
-	            						<input type="text" placeholder="专业名称" name="professionalName" class="professionalName">
+	            						<input type="text" placeholder="专业名称" name="professionalName" class="professionalName" id="major">
 	            					</td>
 	            					<td valign="top">
 							        	<span class="redstar">*</span>
@@ -1264,7 +1264,7 @@
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="Edu()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1587,6 +1587,23 @@ function abc() {
         }
     })
 }
+
+function Edu() {
+    $.ajax({
+        url: "EduRecord/updateEdu",
+        type: "get",
+        data:{"eid":1,"reid":1,"schoolName":$("#schoolName").val(),"educationBackGround":$("#educationBackGround").val(),"major":$("#major").val(),"eduBeginYear":$("#eduBeginYear").val(),"eduEndYear":$("#eduEndYear").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("更新成功")
+            } else{
+                alert("更新失败")
+            }
+        }
+    })
+}
+
 
 function zwms() {
     $.ajax({
