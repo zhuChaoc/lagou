@@ -37,8 +37,6 @@ public class JobController {
     }
  @RequestMapping("/findInfo")
     public Job findById(Integer id){
-     System.out.println("111111");
-     System.out.println(jobService.findById(id).getCompany().getCpName());
      return jobService.findById(id);
  }
 }
