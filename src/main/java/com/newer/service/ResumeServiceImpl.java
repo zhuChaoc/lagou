@@ -22,4 +22,14 @@ public class ResumeServiceImpl implements ResumeService {
     public Resume selectMyDescribe(Integer reid) {
         return resumeMapper.selectMyDescribe(reid);
     }
+
+    @Override
+    public int updateRname(Resume resume) {
+        return resumeMapper.updateRname(resume);
+    }
+
+    @Override
+    public Resume selectRname(Integer reid) {
+        return resumeMapper.selectRname(reid);
+    }
 }

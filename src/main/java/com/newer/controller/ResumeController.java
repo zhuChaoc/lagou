@@ -31,5 +31,18 @@ public class ResumeController {
         map.put("resume",resume);
         return map;
     }
-
+    @RequestMapping("/updateRname")
+    public Map<String,Object> updateRname(Resume resume){
+        Map<String,Object> map=new HashMap<>();
+        int result=resumeService.updateRname(resume);
+        map.put("result",result);
+        return map;
+    }
+    @RequestMapping("/selectRname")
+    public Map<String,Object> selectRname(Integer reid){
+        Map<String,Object> map=new HashMap<>();
+        Resume resume=resumeService.selectRname(reid);
+        map.put("resume",resume);
+        return map;
+    }
 }

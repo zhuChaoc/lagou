@@ -67,12 +67,12 @@
             <div class="content_l">
             	<div class="fl" id="resume_name">
 	            	<div class="nameShow fl">
-	            		<h1 title="jason的简历">jason的简历</h1>
-	            		<span class="rename">重命名</span> | <a target="_blank" href="h/resume/preview.html">预览</a>
+	            		<h1 title="jason的简历" id="rName">jason的简历</h1>
+	            		<span class="rename">重命名</span> | <a target="_blank" href="preview.html">预览</a>
             		</div>
             		<form class="fl dn" id="resumeNameForm">
-            			<input type="text" value="jason的简历" name="resumeName" class="nameEdit c9">	
-            			<input type="submit" value="保存"> | <a target="_blank" href="h/resume/preview.html">预览</a>
+            			<input type="text" value="jason的简历" name="resumeName" class="nameEdit c9" id="rName1">
+            			<input type="submit" value="保存" onclick="updaterName()"> | <a target="_blank" href="preview.html">预览</a>
             		</form>
             	</div><!--end #resume_name-->
             	<div class="fr c5" id="lastChangedTime">最后一次更新：<span>2014-07-01 15:14 </span></div><!--end #lastChangedTime-->
@@ -1550,6 +1550,7 @@ $(function(){
     showWS()
     showZWMS()
     showGZJL()
+    showRname()
 });
 function showXMJY() {
     $.ajax({
@@ -1620,6 +1621,36 @@ function zwms() {
         }
     })
 }
+
+function updaterName(){
+    $.ajax({
+        url: "resume/updateRname",
+        type: "get",
+        data:{"reid":1,"rname":$("#rName1").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("更新成功")
+            } else{
+                alert("更新失败")
+            }
+        }
+    })
+}
+function showRname() {
+    $.ajax({
+        url: "resume/selectRname",
+        type: "get",
+        data:{"reid":1},
+        dataType: "json",
+        success: (data) => {
+           $("#rName").attr("title",data.resume.rname)
+           $("#rName").text(data.resume.rname);
+           $("#rName1").val(data.resume.rname)
+        }
+    })
+}
+
 function showZWMS() {
     $.ajax({
         url: "resume/select",
