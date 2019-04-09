@@ -12,11 +12,12 @@ public class Resume implements Serializable {
       private String rname;
       private Date alterTime;
       private String myDescribe;
+      //缺少期待工作
       private Integer jid;
       private List<WorkShow> workShows;
       private List<WorkRecord> workRecords;
       private List<ProjectRecord> projectRecords;
-      private EduRecord eduRecord;
+      private List<EduRecord> eduRecords;
 
     public Integer getReid() {
         return reid;
@@ -82,11 +83,11 @@ public class Resume implements Serializable {
         this.projectRecords = projectRecords;
     }
 
-    public EduRecord getEduRecord() {
-        return eduRecord;
+    public List<EduRecord> getEduRecords() {
+        return eduRecords;
     }
 
-    public void setEduRecord(EduRecord eduRecord) {
-        this.eduRecord = eduRecord;
+    public void setEduRecords(List<EduRecord> eduRecords) {
+        this.eduRecords = eduRecords;
     }
 }

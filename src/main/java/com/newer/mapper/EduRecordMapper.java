@@ -1,7 +1,5 @@
 package com.newer.mapper;
-
 import com.newer.domain.EduRecord;
-import com.sun.prism.impl.Disposer;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -15,6 +13,4 @@ public interface EduRecordMapper  {
     @Select("select scoolname schoolName,education_background educationBackGround,major," +
             "edubegin_year eduBeginYear,eduend_year eduEndYear from edu_record where reid=#{reid}")
     List<EduRecord> selectEduRecord(Integer reid);
-
-
 }

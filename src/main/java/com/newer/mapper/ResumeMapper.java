@@ -15,4 +15,6 @@ public interface ResumeMapper {
     Resume selectMyDescribe(@Param("reid") Integer reid);
     @Select("select RNAME from resume where reid=#{reid}")
     Resume selectRname(@Param("reid") Integer reid);
+    @Select("select * from resume where JID=#{jid}")
+    Resume selectResume(@Param("jid") Integer jid);
 }
