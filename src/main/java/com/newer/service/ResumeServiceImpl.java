@@ -22,6 +22,8 @@ public class ResumeServiceImpl implements ResumeService {
     private WorkShowMapper workShowMapper;
     @Autowired
     private EduRecordMapper eduRecordMapper;
+    @Autowired
+    private EtJobMapper etJobMapper;
     @Override
     public int updateMyDescribe(Resume resume) {
         return resumeMapper.updateMyDescribe(resume);
@@ -46,6 +48,8 @@ public class ResumeServiceImpl implements ResumeService {
     public Resume selectResume(Integer jid) {
         Resume resume=resumeMapper.selectResume(jid);
         Integer reid=resume.getReid();
+        List<EtJob> etJobs=etJobMapper.selectEtJob(reid);
+        resume.setEtJobs(etJobs);
         List<ProjectRecord> projectRecords=projectRecordMapper.selectProjectRecord(reid);
         resume.setProjectRecords(projectRecords);
         List<WorkShow> workShows=workShowMapper.selectWorkShow(reid);

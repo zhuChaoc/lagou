@@ -8,6 +8,7 @@ public class EtJob implements Serializable {
     private String jobType;//工作类型
     private String expectJob;//期望职位
     private String expectSal;//期望薪水
+    private Integer reid;//关联简历表主键
 
     public EtJob() {
     }
@@ -43,12 +44,19 @@ public class EtJob implements Serializable {
     public void setExpectJob(String expectJob) {
         this.expectJob = expectJob;
     }
-
     public String getExpectSal() {
         return expectSal;
     }
 
     public void setExpectSal(String expectSal) {
         this.expectSal = expectSal;
+    }
+
+    public Integer getReid() {
+        return reid;
+    }
+
+    public void setReid(Integer reid) {
+        this.reid = reid;
     }
 }

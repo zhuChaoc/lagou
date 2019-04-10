@@ -12,8 +12,8 @@ public class Resume implements Serializable {
       private String rname;
       private Date alterTime;
       private String myDescribe;
-      //缺少期待工作
       private Integer jid;
+      private List<EtJob> etJobs;
       private List<WorkShow> workShows;
       private List<WorkRecord> workRecords;
       private List<ProjectRecord> projectRecords;
@@ -89,5 +89,13 @@ public class Resume implements Serializable {
 
     public void setEduRecords(List<EduRecord> eduRecords) {
         this.eduRecords = eduRecords;
+    }
+
+    public List<EtJob> getEtJobs() {
+        return etJobs;
+    }
+
+    public void setEtJobs(List<EtJob> etJobs) {
+        this.etJobs = etJobs;
     }
 }

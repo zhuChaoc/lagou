@@ -9,7 +9,6 @@ public interface EtJobService {
 
     //添加期望工作
     int addEtJob(EtJob etJob);
-
     //查询期望工作
-    List<EtJob> selectEtJob(int id);
+    List<EtJob> selectEtJob(int reid);
 }

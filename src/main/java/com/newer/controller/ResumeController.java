@@ -53,6 +53,7 @@ public class ResumeController {
         Integer jid=jobSeeker.getJID();
         Resume resume=resumeService.selectResume(jid);
         map.put("resume",resume);
+        map.put("jobSeeker",jobSeeker);
         return map;
     }
 }
