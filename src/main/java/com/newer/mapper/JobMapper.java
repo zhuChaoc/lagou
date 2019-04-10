@@ -17,5 +17,4 @@ public interface JobMapper {
     @ResultMap(value = "com.newer.mapper.JobMapper.job1")
     @Select("select a.id aid,a.*,c.id cid,c.* from job a left join company c on a.cpid=c.id where a.id=#{id}")
     Job findById(@Param("id") Integer id);
-
 }
