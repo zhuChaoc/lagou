@@ -381,7 +381,7 @@
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="etJob()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1552,6 +1552,7 @@ $(function(){
     showGZJL()
     showEdu()
     showRname()
+    showETJob()
 });
 
 
@@ -1628,6 +1629,39 @@ function Edu() {
         }
     })
 }
+
+function etJob() {
+    $.ajax({
+        url: "etJob/add",
+        type: "get",
+        data:{"reid":1,"city":$("#expectCity").val(),"jobType":$('input[name="type"]:checked').val(),
+			"expectJob":$("#expectPosition").val(),"expectSal":$("#expectSalary").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("添加成功")
+            } else{
+                alert("添加失败")
+            }
+        }
+    })
+}
+function showETJob() {
+    $.ajax({
+        url: "etJob/select",
+        type: "get",
+        data:{"reid":1},
+        dataType: "json",
+        success: (data) => {
+            data.etjobs.forEach(etJob=>{
+                let $p = $(`<p>${etJob.city},${etJob.jobType},月薪${etJob.expectSal},${etJob.expectJob}</p>`)
+                $("#expectJob").append($p)
+            })
+        }
+    })
+}
+
+
 
 
 function zwms() {

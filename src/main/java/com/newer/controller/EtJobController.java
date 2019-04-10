@@ -10,19 +10,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("/etJob")
+@RestController()
+@RequestMapping("/etJob")
 public class EtJobController {
     @Autowired
     private EtJobService etJobService;
 
     @RequestMapping("/select")
-    public Map<String,Object> selectEtJob(int id){
-        List<EtJob> etJobs=etJobService.selectEtJob(id);
+    public Map<String,Object> selectEtJob(int reid){
+        List<EtJob> etJobs=etJobService.selectEtJob(reid);
         Map<String,Object> map=new HashMap<>();
         map.put("etjobs",etJobs);
         return map;
     }
-     @RequestMapping("add")
+     @RequestMapping("/add")
     public Map<String,Object> addEtJob(EtJob etJob){
       int result=etJobService.addEtJob(etJob);
       Map<String,Object> map=new HashMap<>();
