@@ -1654,7 +1654,8 @@ function showETJob() {
         dataType: "json",
         success: (data) => {
             data.etjobs.forEach(etJob=>{
-                let $p = $(`<p>${etJob.city},${etJob.jobType},月薪${etJob.expectSal},${etJob.expectJob}</p>`)
+                let $p = $(`<p>${etJob.city},${etJob.jobType},月薪${etJob.expectSal},${etJob.expectJob}
+                           <input type="button" value="删除" onclick="deleteEtJob(${etJob.id})" > </p>`)
                 $("#expectJob").append($p)
             })
         }
@@ -1662,6 +1663,24 @@ function showETJob() {
 }
 
 
+function deleteEtJob(id) {
+    if(window.confirm("是否确认删除"))
+	$.ajax({
+		url:"etJob/delete",
+		type:"get",
+		data:{"id":id},
+		dataType:"json",
+		success:(data)=>{
+		    if(data.result>0){
+		        alert("删除成功")
+			}else{
+		        alert("删除失败")
+			}
+			location.href="jianli.html"
+		}
+
+	})
+}
 
 
 function zwms() {

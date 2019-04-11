@@ -23,4 +23,14 @@ public class EtJobServiceImp implements EtJobService {
     public List<EtJob> selectEtJob(int id) {
         return etJobMapper.selectEtJob(id);
     }
+
+    @Override
+    public int deleteEtJob(int id) {
+        return etJobMapper.deleteEtJob(id);
+    }
+
+    @Override
+    public int updateEtJob(EtJob etJob) {
+        return etJobMapper.updateEtJob(etJob);
+    }
 }

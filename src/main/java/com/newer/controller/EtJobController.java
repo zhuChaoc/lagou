@@ -30,4 +30,22 @@ public class EtJobController {
       map.put("result",result);
       return  map;
     }
+
+    @RequestMapping("/delete")
+public Map<String,Object> deleteEtJob(int id){
+        EtJob etJob=new EtJob();
+        etJob.setReid(id);
+        int result=etJobService.deleteEtJob(id);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return map;
+    }
+    @RequestMapping("/update")
+    public Map<String,Object> updateEtJob(EtJob etJob){
+        int result=etJobService.updateEtJob(etJob);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return  map;
+    }
+
 }
