@@ -46,11 +46,11 @@ var youdao_conv_id = 271546;
         		<ul class="register_radio clearfix">
 		            <li>
 		            	找工作
-		              	<input type="radio" value="0" name="type" /> 
+		              	<input type="radio" value="personal" name="type" id="personal" />
 		            </li>
 		            <li>
 		           	           招人
-		              	<input type="radio" value="1" name="type" /> 
+		              	<input type="radio" value="sssss" name="type" id="1"/>
 		            </li>
 		        </ul> 
             	<input type="text" id="EMAIL" name="EMAIL" onblur="a()"
@@ -142,12 +142,10 @@ var youdao_conv_id = 271546;
 			    		var EMAIL =$("#EMAIL").val();
 			    		var PWD =$("#PWD").val();
 			    		var resubmitToken = $('#resubmitToken').val();
-			    		
 			    		var callback = $('#callback').val();
 			    		var authType = $('#authType').val();
 			    		var signature = $('#signature').val();
 			    		var timestamp = $('#timestamp').val();
-			    		
 			    		$(form).find(":submit").attr("disabled", true);
 
 			            $.ajax({
@@ -155,17 +153,21 @@ var youdao_conv_id = 271546;
 			            	data: {EMAIL:EMAIL,PWD:PWD},
 			            	url:"seeker/register",
 			            	dataType:"json",
-							success:function(data){
-                            if (data.result>0){
-                            alert("注册成功")
-								location.href="login.html"
-                        } else{
-                            alert("注册失败")
-                                location.href="register.html"
-                        }
-						    }
+							success:function(data) {
+                                if ($('input[name="type"]:checked').val()==("personal")) {
+                                    if (data.result > 0) {
+										alert("注册成功")
+                                        location.href = "login.html"
+                                    }
+                                }
+                                    else {
+                                        alert("注册失败")
+                                        location.href = "register.html"
+                                    }
+
+                            }
 			            })
-			        }  
+			        }
 	    	});
     });
     function a(){
