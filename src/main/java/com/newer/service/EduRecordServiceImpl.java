@@ -24,4 +24,14 @@ public class EduRecordServiceImpl implements EduRecordService {
     public List<EduRecord> selectEduRecord(Integer reid) {
         return  eduRecordMapper.selectEduRecord(reid);
     }
+
+    @Override
+    public int insetEduRecord(EduRecord eduRecord) {
+        return eduRecordMapper.insetEduRecord(eduRecord);
+    }
+
+    @Override
+    public int deleteEduRecord(Integer eid) {
+        return eduRecordMapper.deleteEduRecord(eid);
+    }
 }

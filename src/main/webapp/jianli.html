@@ -1103,7 +1103,7 @@
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save" onclick="Edu()">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="addEdu()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1264,7 +1264,7 @@
 	            				<tr>
 	            					<td></td>
 	            					<td colspan="3">
-										<input type="submit" value="保 存" class="btn_profile_save" onclick="Edu()">
+										<input type="submit" value="保 存" class="btn_profile_save" onclick="addEdu()">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -1578,19 +1578,59 @@ function showEdu() {
         data:{"reid":reid},
         dataType: "json",
         success: (data) => {
-            data.list.forEach(project=>{
-                let $p = $(`<h3>学校名称：${project.schoolName}</h3>
-             <p>学历：${project.educationBackGround}</p>
-                   <p>专业：${project.major}</p>
-                   <p>开始年份：${project.eduBeginYear}</p>
-                    <p>毕业年份：${project.eduEndYear}</p>
-                    <br>`)
+            data.list.forEach(edu=>{
+                let $p = $(`<h3>学校名称：${edu.schoolName}</h3>
+             <p>学历：${edu.educationBackGround}</p>
+                   <p>专业：${edu.major}</p>
+                   <p>开始年份：${edu.eduBeginYear}</p>
+                    <p>毕业年份：${edu.eduEndYear}</p>
+                    <br>
+                 <input type="button" onclick="deleteEdu(${edu.eid})" value="删除" class="delete">`)
                 $("#educationalBackground").append($p)
             })
         }
     })
 }
 
+//删除教育背景
+function deleteEdu(eid) {
+    if (window.confirm("是否确认删除")){
+        $.ajax({
+            url: "EduRecord/deleteEdu",
+            type: "get",
+            data:{"eid":eid},
+            dataType: "json",
+            success: (data) => {
+                if (data.result>0){
+                    alert("删除成功")
+                    location.href="jianli.html"
+                } else{
+                    alert("删除失败")
+                }
+            }
+        })
+    }
+}
+
+/**
+ * 添加教育背景
+ */
+function addEdu() {
+    let reid=localStorage.getItem("reid")
+    $.ajax({
+        url: "EduRecord/addEdu",
+        type: "get",
+        data:{"eid":1,"reid":reid,"schoolName":$("#schoolName").val(),"educationBackGround":$("#educationBackGround").val(),"major":$("#major").val(),"eduBeginYear":$("#eduBeginYear").val(),"eduEndYear":$("#eduEndYear").val()},
+        dataType: "json",
+        success: (data) => {
+            if (data.result>0){
+                alert("添加成功")
+            } else{
+                alert("添加失败")
+            }
+        }
+    })
+}
 
 function showXMJY() {
     let reid=localStorage.getItem("reid")
@@ -1631,22 +1671,6 @@ function abc() {
     })
 }
 
-function Edu() {
-    let reid=localStorage.getItem("reid")
-    $.ajax({
-        url: "EduRecord/updateEdu",
-        type: "get",
-        data:{"eid":2,"reid":reid,"schoolName":$("#schoolName").val(),"educationBackGround":$("#educationBackGround").val(),"major":$("#major").val(),"eduBeginYear":$("#eduBeginYear").val(),"eduEndYear":$("#eduEndYear").val()},
-        dataType: "json",
-        success: (data) => {
-            if (data.result>0){
-                alert("更新成功")
-            } else{
-                alert("更新失败")
-            }
-        }
-    })
-}
 
 function etJob() {
     let reid=localStorage.getItem("reid")

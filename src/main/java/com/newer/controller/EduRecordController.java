@@ -4,6 +4,8 @@ import com.newer.domain.EduRecord;
 import com.newer.domain.ProjectRecord;
 import com.newer.service.EduRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +28,28 @@ public class EduRecordController  {
     }
 
     @RequestMapping("/selectEdu")
-    public Map<String,Object> selectEduRecordd(Integer reid){
+    public Map<String,Object> selectEduRecord(Integer reid){
         List<EduRecord> list=eduRecordService.selectEduRecord(reid);
         Map<String,Object> map=new HashMap<>();
         map.put("list",list);
         return map;
     }
+
+    @RequestMapping("/addEdu")
+    public Map<String,Object> addEduRecord(EduRecord eduRecord){
+        int result=eduRecordService.insetEduRecord(eduRecord);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return  map;
+    }
+
+    @RequestMapping("/deleteEdu")
+    public Map<String,Object> deleteEdu(int eid){
+        int result=eduRecordService.deleteEduRecord(eid);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return map;
+    }
+
 
 }
