@@ -1,5 +1,7 @@
 package com.newer.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 public class Resume implements Serializable {
       private Integer reid;
       private String rname;
+     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
       private Date alterTime;
       private String myDescribe;
       private Integer jid;
