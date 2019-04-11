@@ -28,4 +28,13 @@ public class WorkShowController {
         map.put("list",list);
         return map;
     }
+    @RequestMapping("/delete")
+    public Map<String,Object> deleteWorkRecord(int wsid){
+        WorkShow workShow=new WorkShow();
+        workShow.setWsid(wsid);
+        int result=workShowService.deleteWorkShow(wsid);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return  map;
+    }
 }

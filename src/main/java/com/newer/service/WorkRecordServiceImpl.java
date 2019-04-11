@@ -24,4 +24,9 @@ public class WorkRecordServiceImpl implements WorkRecordService{
     public List<WorkRecord> selectWorkRecord(Integer reid) {
         return workRecordMapper.selectWorkRecord(reid);
     }
+
+    @Override
+    public int deleteWorkRecord(int wid) {
+        return workRecordMapper.deleteWorkRecord(wid);
+    }
 }

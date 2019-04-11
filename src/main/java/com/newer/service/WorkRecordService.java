@@ -8,4 +8,5 @@ import java.util.List;
 public interface WorkRecordService {
     int addWorkRecord(WorkRecord workRecord);
     List<WorkRecord> selectWorkRecord(Integer reid);
+    int deleteWorkRecord(@Param("wid") int wid);
 }

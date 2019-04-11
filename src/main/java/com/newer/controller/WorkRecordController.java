@@ -29,4 +29,13 @@ public class WorkRecordController {
         map.put("list",list);
         return map;
     }
+    @RequestMapping("/delete")
+    public Map<String,Object> deleteWorkRecord(int wid){
+        WorkRecord workRecord=new WorkRecord();
+        workRecord.setWid(wid);
+        int result=workRecordService.deleteWorkRecord(wid);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return  map;
+    }
 }

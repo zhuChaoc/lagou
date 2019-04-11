@@ -1793,11 +1793,30 @@ function showGZJL() {
                 let $p = $(`<h3>公司：${record.companyName}</h3>
              <p>工作时间：${record.workBeginYear}.${record.workBeginMonth}-${record.workEndYear}.${record.workEndMonth}</p>
                    <p>职位：${record.jobName}</p>
-                    <br>`)
+                    <br>
+              <p><input type="button" value="删除" onclick="deleteGZJL(${record.wid})" > </p>`)
                 $("#workExperience").append($p)
             })
         }
     })
+}
+function deleteGZJL(wid) {
+    if(window.confirm("是否确认删除"))
+        $.ajax({
+            url:"workRecord/delete",
+            type:"get",
+            data:{"wid":wid},
+            dataType:"json",
+            success:(data)=>{
+                if(data.result>0){
+                    alert("删除成功")
+                }else{
+                    alert("删除失败")
+                }
+                location.href="jianli.html"
+            }
+
+        })
 }
 
 function updaterName(){
@@ -1858,13 +1877,30 @@ function showWS() {
             data.list.forEach(ws=>{
                 let $p = $(`<h3>作品链接：${ws.workLink}</h3>
              <p>项目描述：${ws.workDescribe}</p>
-                    <br>`)
+                    <br><p><input type="button" value="删除" onclick="deleteWorkShow(${ws.wsid})"></p>`)
                 $("#worksShow").append($p)
             })
         }
     })
 }
+function deleteWorkShow(wsid) {
+    if(window.confirm("是否确认删除"))
+        $.ajax({
+            url:"workShow/delete",
+            type:"get",
+            data:{"wsid":wsid},
+            dataType:"json",
+            success:(data)=>{
+                if(data.result>0){
+                    alert("删除成功")
+                }else{
+                    alert("删除失败")
+                }
+                location.href="jianli.html"
+            }
 
+        })
+}
 
 function uploadPic() {
     $.ajax({

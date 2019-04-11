@@ -23,4 +23,9 @@ public class WorkShowServiceImpl implements WorkShowService{
     public List<WorkShow> selectWorkShow(Integer reid) {
         return workShowMapper.selectWorkShow(reid);
     }
+
+    @Override
+    public int deleteWorkShow(int wsid) {
+        return workShowMapper.deleteWorkShow(wsid);
+    }
 }
