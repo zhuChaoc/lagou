@@ -75,7 +75,7 @@
             			<input type="submit" value="保存" onclick="updaterName()"> | <a target="_blank" href="h/resume/preview.html">预览</a>
             		</form>
             	</div><!--end #resume_name-->
-            	<div class="fr c5" id="lastChangedTime">最后一次更新：<span>2014-07-01 15:14 </span></div><!--end #lastChangedTime-->
+            	<div class="fr c5" id="lastChangedTime">最后一次更新：<span id="alterTime">2014-07-01 15:14 </span></div><!--end #lastChangedTime-->
             	<div id="resumeScore">
             		<div class="score fl">
             			<canvas height="120" width="120" id="doughnutChartCanvas" style="width: 120px; height: 120px;"></canvas>
@@ -1522,6 +1522,7 @@
 </div>
 <script>
 $(function(){
+    getReid()
     $.ajax({
         url: "seeker/getUser",
         type: "get",
@@ -1555,12 +1556,26 @@ $(function(){
     showETJob()
 });
 
+function getReid(){
+    $.ajax({
+        url: "resume/selectResume",
+        type: "get",
+		async:false,
+        dataType: "json",
+        success: (data) => {
+            localStorage.removeItem("reid")
+            localStorage.setItem("reid",data.resume.reid)
+			$("#alterTime").text(data.resume.alterTime)
+        }
+    })
+}
 
 function showEdu() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "EduRecord/selectEdu",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             data.list.forEach(project=>{
@@ -1578,10 +1593,11 @@ function showEdu() {
 
 
 function showXMJY() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "record/select",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
            data.list.forEach(project=>{
@@ -1596,10 +1612,11 @@ function showXMJY() {
     })
 }
 function abc() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "record/insert",
         type: "get",
-		data:{"reid":1,"wname":$("#wname").val(),"wjob":$("#wjob").val(),
+		data:{"reid":reid,"wname":$("#wname").val(),"wjob":$("#wjob").val(),
             "beginYear":$("#beginYear").val(),"beginMonth":$("#beginMonth").val(),
             "endYear":$("#endYear").val(),"endMonth":$("#endMonth").val(),
             "describe":$("#describe").val() },
@@ -1615,10 +1632,11 @@ function abc() {
 }
 
 function Edu() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "EduRecord/updateEdu",
         type: "get",
-        data:{"eid":1,"reid":1,"schoolName":$("#schoolName").val(),"educationBackGround":$("#educationBackGround").val(),"major":$("#major").val(),"eduBeginYear":$("#eduBeginYear").val(),"eduEndYear":$("#eduEndYear").val()},
+        data:{"eid":2,"reid":reid,"schoolName":$("#schoolName").val(),"educationBackGround":$("#educationBackGround").val(),"major":$("#major").val(),"eduBeginYear":$("#eduBeginYear").val(),"eduEndYear":$("#eduEndYear").val()},
         dataType: "json",
         success: (data) => {
             if (data.result>0){
@@ -1631,10 +1649,11 @@ function Edu() {
 }
 
 function etJob() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "etJob/add",
         type: "get",
-        data:{"reid":1,"city":$("#expectCity").val(),"jobType":$('input[name="type"]:checked').val(),
+        data:{"reid":reid,"city":$("#expectCity").val(),"jobType":$('input[name="type"]:checked').val(),
 			"expectJob":$("#expectPosition").val(),"expectSal":$("#expectSalary").val()},
         dataType: "json",
         success: (data) => {
@@ -1647,10 +1666,11 @@ function etJob() {
     })
 }
 function showETJob() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "etJob/select",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             data.etjobs.forEach(etJob=>{
@@ -1684,10 +1704,11 @@ function deleteEtJob(id) {
 
 
 function zwms() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "resume/updatezwms",
         type: "get",
-        data:{"reid":1,"myDescribe":$("#myms").val()},
+        data:{"reid":reid,"myDescribe":$("#myms").val()},
         dataType: "json",
         success: (data) => {
             if (data.result>0){
@@ -1699,10 +1720,11 @@ function zwms() {
     })
 }
 function showZWMS() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "resume/select",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             if (data.resume.myDescribe!=null) {
@@ -1717,10 +1739,11 @@ function showZWMS() {
 
 
 function gzjl() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "workRecord/insert",
         type: "get",
-        data:{"reid":1,"companyName":$("#companyName").val(),"jobName":$("#jobName").val(),
+        data:{"reid":reid,"companyName":$("#companyName").val(),"jobName":$("#jobName").val(),
             "workBeginYear":$("#workBeginYear").val(),"workBeginMonth":$("#workBeginMonth").val(),
             "workEndYear":$("#workEndYear").val(),"workEndMonth":$("#workEndMonth").val()},
         dataType: "json",
@@ -1734,10 +1757,11 @@ function gzjl() {
     })
 }
 function showGZJL() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "workRecord/select",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             data.list.forEach(record=>{
@@ -1752,10 +1776,11 @@ function showGZJL() {
 }
 
 function updaterName(){
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "resume/updateRname",
         type: "get",
-        data:{"reid":1,"rname":$("#rName1").val()},
+        data:{"reid":reid,"rname":$("#rName1").val()},
         dataType: "json",
         success: (data) => {
             if (data.result>0){
@@ -1767,10 +1792,11 @@ function updaterName(){
     })
 }
 function showRname() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "resume/selectRname",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             $("#rName").attr("title",data.resume.rname)
@@ -1781,10 +1807,11 @@ function showRname() {
 }
 
 function workShow() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "workShow/insert",
         type: "get",
-        data:{"reid":1,"workLink":$("#workLink").val(),"workDescribe":$("#workDescribe").val()},
+        data:{"reid":reid,"workLink":$("#workLink").val(),"workDescribe":$("#workDescribe").val()},
         dataType: "json",
         success: (data) => {
             if (data.result>0){
@@ -1796,10 +1823,11 @@ function workShow() {
     })
 }
 function showWS() {
+    let reid=localStorage.getItem("reid")
     $.ajax({
         url: "workShow/select",
         type: "get",
-        data:{"reid":1},
+        data:{"reid":reid},
         dataType: "json",
         success: (data) => {
             data.list.forEach(ws=>{
