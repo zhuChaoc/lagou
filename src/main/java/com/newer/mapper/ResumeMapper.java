@@ -17,4 +17,6 @@ public interface ResumeMapper {
     Resume selectRname(@Param("reid") Integer reid);
     @Select("select * from resume where jid=#{jid}")
     Resume selectResume(@Param("jid") Integer jid);
+    @Insert("insert into resume values(#{reid},null,#{alterTime},null,#{jid},null,null,null,null)")
+    int insertResume(Resume resume);
 }

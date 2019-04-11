@@ -8,4 +8,5 @@ public interface ResumeService {
     int updateRname(Resume resume);
     Resume selectRname(Integer reid);
     Resume selectResume(Integer jid);
+    int insertResume(Resume resume);
 }

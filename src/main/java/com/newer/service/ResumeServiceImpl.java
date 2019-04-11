@@ -60,4 +60,9 @@ public class ResumeServiceImpl implements ResumeService {
         resume.setEduRecords(eduRecords);
         return resume;
     }
+
+    @Override
+    public int insertResume(Resume resume) {
+        return resumeMapper.insertResume(resume);
+    }
 }

@@ -1,6 +1,8 @@
 package com.newer.controller;
 import com.newer.domain.JobSeeker;
+import com.newer.domain.Resume;
 import com.newer.service.JobSeekerService;
+import com.newer.service.ResumeService;
 import com.newer.util.MD5;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +22,28 @@ import java.util.Map;
 public class JobSeekerController {
     @Autowired
     private JobSeekerService jobSeekerService;
+    @Autowired
+    private ResumeService resumeService;
 
     @RequestMapping("/register")
     public Map<String,Object> insertJobSeeker(String EMAIL,String PWD){
         JobSeeker jobSeeker=new JobSeeker();
         jobSeeker.setEMAIL(EMAIL);
         jobSeeker.setPWD(MD5.getInstance().getMD5ofStr(PWD));
-        int result=jobSeekerService.insertJobSeeker(jobSeeker);
+        int result=0;
+        int count1=jobSeekerService.insertJobSeeker(jobSeeker);
+        if (count1>0){
+            JobSeeker jobSeeker1=jobSeekerService.selectJobSeeker(EMAIL,MD5.getInstance().getMD5ofStr(PWD));
+            Integer jid=jobSeeker1.getJID();
+            Resume resume=new Resume();
+            resume.setJid(jid);
+            resume.setReid(jid);
+            resume.setAlterTime(new Date());
+            int count2=resumeService.insertResume(resume);
+            if (count2>0){
+                result=1;
+            }
+        }
         Map<String,Object> map=new HashMap<>();
         map.put("result",result);
         return map;
