@@ -26,4 +26,9 @@ public class ProjectRecordServiceImpl implements ProjectRecordService {
     public List<ProjectRecord> selectProjectRecord(Integer reid) {
         return projectRecordMapper.selectProjectRecord(reid);
     }
+
+    @Override
+    public int deleteProjectRecord(Integer pid) {
+        return projectRecordMapper.deleteProjectRecord(pid);
+    }
 }

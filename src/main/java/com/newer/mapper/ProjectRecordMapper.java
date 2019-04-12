@@ -1,6 +1,7 @@
 package com.newer.mapper;
 
 import com.newer.domain.ProjectRecord;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +16,8 @@ public interface ProjectRecordMapper {
     @Select("select pid,reid,wname,wjob,projectBEGIN_YEAR beginYear,projectBEGIN_MONTH beginMonth," +
             "projectEND_YEAR endYear,projectEND_MONTH endMONTH,project_describe xmdescribe from project_record where reid=#{reid}")
     List<ProjectRecord> selectProjectRecord(@Param("reid") Integer reid);
+
+
+    @Delete("delete from project_record where pid=#{pid}")
+    int deleteProjectRecord(Integer pid);
 }

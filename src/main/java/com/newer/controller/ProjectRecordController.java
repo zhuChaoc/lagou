@@ -42,4 +42,15 @@ public class ProjectRecordController {
         map.put("list",list);
         return map;
     }
+    @RequestMapping("/delete")
+    public Map<String,Object> delete(int pid){
+        int result=projectRecordService.deleteProjectRecord(pid);
+        Map<String,Object> map=new HashMap<>();
+        map.put("result",result);
+        return map;
+    }
+
+
+
+
 }

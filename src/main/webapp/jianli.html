@@ -1612,6 +1612,8 @@ function deleteEdu(eid) {
     }
 }
 
+
+
 /**
  * 添加教育背景
  */
@@ -1642,7 +1644,8 @@ function showXMJY() {
         success: (data) => {
            data.list.forEach(project=>{
                let $p = $(`<h3>项目名称：${project.wname}</h3>
-             <p>项目周期：${project.beginYear}.${project.beginMonth}-${project.endYear}.${project.endMonth}</p>
+      <input type="button" onclick="deleteProjectRecord(${project.pid})" value="删除" class="delete">
+      <p>项目周期：${project.beginYear}.${project.beginMonth}-${project.endYear}.${project.endMonth}</p>
                    <p>职责：${project.wjob}</p>
                    <p>项目描述：${project.xmdescribe}</p>
                     <br>`)
@@ -1725,6 +1728,29 @@ function deleteEtJob(id) {
 		}
 
 	})
+}
+
+/**
+ * 删除项目经验
+ * @param pid
+ */
+function deleteProjectRecord(pid) {
+    if(window.confirm("是否确认删除"))
+        $.ajax({
+            url:"record/delete",
+            type:"get",
+            data:{"pid":pid},
+            dataType:"json",
+            success:(data)=>{
+                if(data.result>0){
+                    alert("删除成功")
+                }else{
+                    alert("删除失败")
+                }
+                location.href="jianli.html"
+            }
+
+        })
 }
 
 
