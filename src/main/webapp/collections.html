@@ -168,7 +168,7 @@ function show() {
 	                                    <span class="co_time">发布时间：${job.publishTime}</span>
 	                                    <div class="co_cate">${job.company.cpName} / ${job.jobCity} / ${job.jobExperience} / ${job.jobEducation}</div>
 	                                    <span class="co_youhuo c7">${job.jobLightPoint}</span>
-                                       	 <a class="collection_link" target="_blank" href="delivery.html">投个简历</a>
+                                       	 <a class="collection_link" target="_blank" href="delivery.html" onclick="return tou(${job.id})">投个简历</a>
                                        		 <i></i>
                                         <a class="collectionCancel collection_link collected" href="javascript:;" onclick="qxsc(${job.id})">
                                         	取消收藏
@@ -177,8 +177,19 @@ function show() {
                             	</li>`)
                 $("#cjobs").append($p)
 			})
+
         }
     })
+
+}
+function tou(id) {
+    if(window.confirm("是否投递已有简历")){
+        localStorage.removeItem("id")
+        localStorage.setItem("id",id)
+        alert("投递成功")
+	}else {
+        return false;
+	}
 
 }
 function a1(id) {

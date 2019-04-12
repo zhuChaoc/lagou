@@ -73,7 +73,7 @@ var youdao_conv_id = 271546;
             <div class="content_l">
             	<dl class="c_delivery">
                     <dt>
-                        <h1><em></em>已投递简历状态</h1>
+                        <h1><em></em>投递简历状态</h1>
                         <a class="d_refresh" href="javascript:;">刷新</a>
                     </dt>
                     <dd>
@@ -102,60 +102,10 @@ var youdao_conv_id = 271546;
                     	                        <form id="deliveryForm">
                             <ul class="reset my_delivery">
                                	                             	<li>
-                             		<div class="d_item">
-                             			 	                                    <h2 title="随便写">
-	                                        <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
-	                                        	<em>随便写</em> 
-	                                        	<span>（1k-2k）</span>
-	                                        	<!--  -->
-	                                    	</a>
-	                                    </h2>
-	                                    		                                <div class="clear"></div>
-	                                   	<a title="公司名称" class="d_jobname" target="_blank" href="http://www.lagou.com/c/25927.html">
-	                                   		公司名称 <span>[上海]</span> 
-	                                    </a>
-	                                    <span class="d_time">2014-07-01 17:15</span>
-	                                    <div class="clear"></div>
-	                                    <div class="d_resume">
-	                                    	使用简历：
-	                                    	<span>
-	                                    	                                        		在线简历
-                                        		                                    	</span>
-	                                    </div>
-	                                    	                                    	<a class="btn_showprogress" href="javascript:;">
-	                                    			                                    			不合适
-	                                    			                                    	<i></i></a>
+                             		<div class="d_item" id="companylist">
+
                                			                               		</div>
-                               		                               		<div class="progress_status	dn">
-	                               		                               			<ul class="status_steps">
-                               				<li class="status_done status_1">1</li>
-                               				<li class="status_line status_line_done"><span></span></li>
-                               				<li class="status_done"><span>2</span></li>
-                               				<li class="status_line status_line_done"><span></span></li>
-                               				<li class="status_done"><span>3</span></li>
-                               				<li class="status_line status_line_done"><span></span></li>
-                               				<li class="status_done"><span>4</span></li>
-                               			</ul>
-                               			<ul class="status_text">
-                           					<li>投递成功</li>
-                           					<li class="status_text_2">简历被查看</li>
-                           					<li class="status_text_3">通过初步筛选</li>
-                           						                                    		<li style="margin-left: 75px;*margin-left: 60px;" class="status_text_4">不合适</li>
-	                                    	                               			</ul>
-                               			<ul class="status_list">
-                               				    <li class="top">
-                               					<div class="list_time"><em></em>2014-07-01 17:15</div>
-                               					<div class="list_body">
-                               						                               							简历被lixiang标记为不合适<div>您的简历已收到，但目前您的工作经历与该职位不是很匹配，因此很抱歉地通知您无法进入面试。</div>                               						                               					</div>
-                               				</li>
-                               				<li class="bottom">
-                               					<div class="list_time"><em></em>2014-07-01 17:08</div>
-                               					<div class="list_body">
-                               						                               							lixiang已成功接收你的简历                               						                               					</div>
-                               				</li>
-                               				                               			</ul>
-                               			<a class="btn_closeprogress" href="javascript:;"></a>
-                               		</div>
+
                                		                            	</li>
                             	                            </ul>
                                                     	<input type="hidden" value="-1" name="tag">
@@ -341,6 +291,59 @@ $(function(){
 <!--  -->
 
 <script type="text/javascript">
+    $(function() {
+        company()
+    })
+
+    function company() {
+        let id=localStorage.getItem("id")
+        $.ajax({
+            url: "job/findInfo",
+            type: "get",
+            data:{"id":id},
+            dataType: "json",
+            success: (data) => {
+                let $div = $(`
+
+ <img width="80" height="80" alt="${data.company.cpName}" src="companyImgs/${data.company.cpLogo}" class="b2">
+                <dl class="class="d_item">
+                         <h2 title="${data.jobName}">
+	                                        <a target="_blank" href="toudi.html">
+	                                        	<em>${data.jobName}</em>
+	                                        	<span>${data.minSal}k-${data.maxSal}k</span>
+
+	                                    	</a>
+	                                    </h2>
+
+	                                    		                                <div class="clear"></div>
+	                                   	<a title="${data.company.cpName}" class="d_jobname" target="_blank" href="http://${data.company.cpUrl}">
+	                                   		${data.company.cpName} <span>${data.jobCity}</span>
+	                                    </a>
+
+	                                    <div class="clear"></div>
+	                                    <div class="d_resume">
+	                                    	使用简历：
+	                                    	<span>
+	                                    	                                        	<a href="preview.html">在线简历</a>
+                                        		                                    	</span>
+	                                    </div>
+
+                               			                               		</div>
+
+                      `)
+                $("#companylist").append($div)
+            }
+        })
+
+    }
+
+
+
+
+
+
+
+
 $(function(){
 	$('#noticeDot-1').hide();
 	$('#noticeTip a.closeNT').click(function(){
