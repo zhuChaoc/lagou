@@ -49,7 +49,6 @@
                                 	<dd><a rel="nofollow" href="jianli.html">我的简历</a></dd>
                 	                	<dd><a href="collections.html">我收藏的职位</a></dd>
                 	                	                	<dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
-                	<dd><a href="company/create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
             </dl>
@@ -1644,10 +1643,10 @@ function showXMJY() {
         success: (data) => {
            data.list.forEach(project=>{
                let $p = $(`<h3>项目名称：${project.wname}</h3>
-      <input type="button" onclick="deleteProjectRecord(${project.pid})" value="删除" class="delete">
       <p>项目周期：${project.beginYear}.${project.beginMonth}-${project.endYear}.${project.endMonth}</p>
                    <p>职责：${project.wjob}</p>
                    <p>项目描述：${project.xmdescribe}</p>
+                   <input type="button" onclick="deleteProjectRecord(${project.pid})" value="删除" class="delete">
                     <br>`)
                $("#projectExperience").append($p)
 			})

@@ -82,7 +82,9 @@ public class JobSeekerController {
     public Map<String,Object> getUser(HttpSession session){
         JobSeeker jobSeeker= (JobSeeker) session.getAttribute("jobSeeker");
         Map<String,Object> map=new HashMap<>();
-        map.put("jobSeeker",jobSeeker);
+        if (jobSeeker!=null){
+            map.put("jobSeeker",jobSeeker);
+        }
         return map;
     }
     @RequestMapping("/update")

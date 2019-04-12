@@ -46,14 +46,13 @@ console.log(1);
 	    						    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>jason&nbsp;</span> 
+           			<span id="uid">jason&nbsp;</span>
             		<span class="red dn" id="noticeDot-0"></span>
             		<i></i>
             	</dt>
                                 	<dd><a rel="nofollow" href="jianli.html">我的简历</a></dd>
                 	                	<dd><a href="collections.html">我收藏的职位</a></dd>
                 	                	                	<dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
-                	<dd><a href="company/create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
             </dl>
@@ -75,73 +74,8 @@ console.log(1);
                     </dt>
                     <dd>
                     	                        <form id="collectionsForm">
-                            <ul class="reset my_collections">
-                               	                             	<li data-id="133340">
-                             		<a title="携程旅行网" target="_blank" href="h/c/6636.html">
-                             			<img alt="携程旅行网" src="style/images/ff808081441c19bf01441f9a47190b3a.png">
-                             		</a>
-                             		<div class="co_item">
-                             			<h2 title="酒店业务助理">
-	                                        <a target="_blank" href="h/jobs/133340.html">
-	                                        	<em>酒店业务助理</em> 
-	                                        	<span>（4k以上）</span>
-	                                    	</a>
-	                                    </h2>
-	                                    <span class="co_time">发布时间：2014-06-27 09:37</span>
-	                                    <div class="co_cate">携程旅行网 / 北京 / 1-3年 / 本科</div>
-	                                    <span class="co_youhuo c7">出勤福利</span>
-                                       	                                       		                                       			                                       				<a class="collection_link" target="_blank" href="h/jobs/133340.html">投个简历</a>
-                                       			                                       												                                        <i></i>
-                                        <a class="collectionCancel collection_link collected" href="javascript:;">
-                                        	取消收藏
-                                        	<span>已取消收藏</span>
-                                        </a>
-                               		</div>
-                            	</li>
-                            	                             	<li data-id="148886">
-                             		<a title="蘑菇街" target="_blank" href="h/c/108.html">
-                             			<img alt="蘑菇街" src="style/images/ff80808142a8df050142b1674c596676.jpg">
-                             		</a>
-                             		<div class="co_item">
-                             			<h2 title="PHP">
-	                                        <a target="_blank" href="h/jobs/148886.html">
-	                                        	<em>PHP</em> 
-	                                        	<span>（15k-30k）</span>
-	                                    	</a>
-	                                    </h2>
-	                                    <span class="co_time">发布时间：2014-07-01 09:41</span>
-	                                    <div class="co_cate">蘑菇街 / 杭州 / 不限 / 本科</div>
-	                                    <span class="co_youhuo c7">有技术挑战、有成长机会、有漂亮妹子</span>
-                                       	                                       		                                       			                                       				<a class="collection_link" target="_blank" href="h/jobs/148886.html">投个简历</a>
-                                       			                                       												                                        <i></i>
-                                        <a class="collectionCancel collection_link collected" href="javascript:;">
-                                        	取消收藏
-                                        	<span>已取消收藏</span>
-                                        </a>
-                               		</div>
-                            	</li>
-                            	                             	<li data-id="148519">
-                             		<a title="搜狗" target="_blank" href="h/c/1537.html">
-                             			<img alt="搜狗" src="style/images/ff80808142e0968f0142e0d41f1205f2.jpg">
-                             		</a>
-                             		<div class="co_item">
-                             			<h2 title="商家运营">
-	                                        <a target="_blank" href="h/jobs/148519.html">
-	                                        	<em>商家运营</em> 
-	                                        	<span>（8k-16k）</span>
-	                                    	</a>
-	                                    </h2>
-	                                    <span class="co_time">发布时间：2014-07-01 09:21</span>
-	                                    <div class="co_cate">搜狗 / 北京 / 1-3年 / 本科</div>
-	                                    <span class="co_youhuo c7">领先品牌，全新产品，急聘电商运营人才。</span>
-                                       	                                       		                                       			                                       				<a class="collection_link" target="_blank" href="h/jobs/148519.html">投个简历</a>
-                                       			                                       												                                        <i></i>
-                                        <a class="collectionCancel collection_link collected" href="javascript:;">
-                                        	取消收藏
-                                        	<span>已取消收藏</span>
-                                        </a>
-                               		</div>
-                            	</li>
+                            <ul class="reset my_collections" id="cjobs">
+
                             	                            </ul>
                                                     </form>
                                             </dd>
@@ -198,7 +132,76 @@ $(function(){
 	$('#noticeTip a.closeNT').click(function(){
 		$(this).parent().hide();
 	});
+    getUser()
+    show()
 });
+function getUser() {
+    $.ajax({
+        url: "seeker/getUser",
+        type: "get",
+        dataType: "json",
+        success: (data) => {
+            if (data.jobSeeker!=null){
+                $("#uid").text(data.jobSeeker.jname)
+			}
+        }
+    })
+}
+function show() {
+    $.ajax({
+        url: "cjob/select",
+        type: "get",
+        dataType: "json",
+        success: (data) => {
+            data.jobs.forEach(job=>{
+                let $p = $(`<li data-id="${job.id}">
+                             		<a title="${job.company.cpName}" target="_blank" href="http://${job.company.cpUrl}">
+                             			<img alt="${job.company.cpName}" src="companyImgs/${job.company.cpLogo}">
+                             		</a>
+                             		<div class="co_item">
+                             			<h2 title="${job.jobName}">
+	                                        <a target="_blank" href="toudi.html" onclick="a1(${job.id})">
+	                                        	<em>${job.jobName}</em>
+	                                        	<span>${job.minSal}k-${job.maxSal}k</span>
+	                                    	</a>
+	                                    </h2>
+	                                    <span class="co_time">发布时间：${job.publishTime}</span>
+	                                    <div class="co_cate">${job.company.cpName} / ${job.jobCity} / ${job.jobExperience} / ${job.jobEducation}</div>
+	                                    <span class="co_youhuo c7">${job.jobLightPoint}</span>
+                                       	 <a class="collection_link" target="_blank" href="delivery.html">投个简历</a>
+                                       		 <i></i>
+                                        <a class="collectionCancel collection_link collected" href="javascript:;" onclick="qxsc(${job.id})">
+                                        	取消收藏
+                                        </a>
+                               		</div>
+                            	</li>`)
+                $("#cjobs").append($p)
+			})
+        }
+    })
+
+}
+function a1(id) {
+    localStorage.setItem("id",id);
+}
+function qxsc(id) {
+    if (window.confirm("是否确认取消收藏")){
+        $.ajax({
+            url: "cjob/delete",
+            type: "get",
+            data: {"jid": id},
+            dataType: "json",
+            success: (data) => {
+                if (data.result > 0) {
+                    alert("取消收藏成功")
+					location.href="collections.html"
+                } else {
+                    alert("取消收藏失败")
+                }
+            }
+        })
+	}
+}
 var index = Math.floor(Math.random() * 2);
 var ipArray = new Array('42.62.79.226','42.62.79.227');
 var url = "ws://" + ipArray[index] + ":18080/wsServlet?code=314873";

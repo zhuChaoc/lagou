@@ -513,7 +513,7 @@ $(function(){
                                                         	<div>${data.company.cpName}招聘</div>
                            	                           	${data.jobName}
                         </h1>
-                         	<div class="jd_collection" id="jobCollection">
+                         	<div class="jd_collection" id="jobCollection" onclick="scjob(${data.id})">
                        		                       		<div class="jd_collection_success">
                        			<span>已成功收藏该职位，</span>
 								<a class="jd_collection_page" href="collections.html">查看全部</a>
@@ -588,6 +588,21 @@ ${data.company.cpName}
                 }
                 })
 
+        }
+        function scjob(id) {
+            $.ajax({
+                url: "cjob/insert",
+                type: "get",
+                data: {"jid": id},
+                dataType: "json",
+                success: (data) => {
+                    if (data.result > 0) {
+                        alert("收藏成功")
+                    } else {
+                        alert("收藏失败")
+                    }
+                }
+            })
         }
 </script>
 			<div class="clear"></div>

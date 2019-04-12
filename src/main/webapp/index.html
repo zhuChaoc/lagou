@@ -34,7 +34,7 @@
 <body>
 <div id="body">
 	<div id="header">
-		<div class="wrapper">
+		<div class="wrapper" id="menu">
 			<a href="index.html" class="logo">
 				<img src="style/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
 			</a>
@@ -45,7 +45,7 @@
 				<li ><a href="jianli.html" rel="nofollow">我的简历</a></li>
 				<li ><a href="company/create.html" rel="nofollow">发布职位</a></li>
 			</ul>
-			<ul class="loginTop">
+			<ul class="loginTop" id="top">
 				<li><a href="login.html" rel="nofollow">登录</a></li>
 				<li>|</li>
 				<li><a href="register.html" rel="nofollow">注册</a></li>
@@ -913,7 +913,34 @@
             $(function(){
                 a1()
                 a2()
+                getUser()
             })
+
+            function getUser() {
+                $.ajax({
+                    url: "seeker/getUser",
+                    type: "get",
+                    dataType: "json",
+                    success: (data) => {
+                        if (data.jobSeeker!=null) {
+                            let $li=$(`<dl class="collapsible_menu">
+            	<dt>
+           			<span id="uname">${data.jobSeeker.jname}&nbsp;</span>
+            		<span class="red dn" id="noticeDot-0"></span>
+            		<i></i>
+            	</dt>
+                                	<dd><a rel="nofollow" href="jianli.html">我的简历</a></dd>
+                	                	<dd><a href="collections.html">我收藏的职位</a></dd>
+                	                	                	<dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
+                                                <dd><a href="accountBind.html">帐号设置</a></dd>
+                                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
+            </dl>`)
+                            $("#top").remove()
+							$("#menu").append($li)
+						}
+                    }
+                })
+            }
             function a1() {
                 $.ajax({
                     url: "job/select",
