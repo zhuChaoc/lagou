@@ -50,7 +50,7 @@ var youdao_conv_id = 271546;
 	    		    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>jason&nbsp;</span> 
+           			<span id="uid">jason&nbsp;</span>
             		<span class="red dn" id="noticeDot-1"></span>
             		<i></i>
             	</dt>
@@ -495,8 +495,20 @@ $(function(){
 		$(function() {
             jobInfo()
             company()
+            getUser()
         })
-
+        function getUser() {
+            $.ajax({
+                url: "seeker/getUser",
+                type: "get",
+                dataType: "json",
+                success: (data) => {
+                    if (data.jobSeeker!=null){
+                        $("#uid").text(data.jobSeeker.jname)
+                    }
+                }
+            })
+        }
         function jobInfo() {
 		    let id=localStorage.getItem("id")
             $.ajax({
