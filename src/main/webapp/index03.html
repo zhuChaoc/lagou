@@ -54,7 +54,7 @@ var youdao_conv_id = 271546;
 	    		    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>${loginer.userName}</span>
+           			<span id="userNames"></span>
             		<span class="red dn" id="noticeDot-1"></span>
             		<i></i>
             	</dt>
@@ -93,15 +93,29 @@ var youdao_conv_id = 271546;
 
 
 <script>
+	$(()=>{
+		var userName=localStorage.getItem("userName")
+		$("#userNames").text(userName)
+	})
+
 	$("#step5Submit").click(()=>{
+
 		$.ajax({
 			url:"company/index3",
 			data:{cpLongInfo:$("#cpLongInfo").val()},
 			type:"POST",
-			dataType:"json",
+			dataType:"JSON",
 			success:(data)=>{
-				alert("成功")
-				location.href="myhome.html"
+				console.log(data.msg)
+				if (data.msg =="suc"){
+
+					location.href ="myhome.html"
+				}else{
+					alert("请重新填写")
+				}
+			},
+			error:()=>{
+
 			}
 		})
 	})

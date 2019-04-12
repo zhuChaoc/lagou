@@ -1,8 +1,13 @@
 package com.newer.test;
 
 import com.newer.domain.JobSeeker;
+import com.newer.mapper.CompanyMapper;
+import com.newer.service.CompanyImpl;
+import com.newer.service.CompanyService;
 import com.newer.util.SendmailUtil;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class test1 {
     @Test
@@ -23,4 +28,5 @@ public class test1 {
             e.printStackTrace();
         }
     }
+
 }

@@ -69,4 +69,16 @@ public class User implements Serializable {
     public void setLevel(String level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", job='" + job + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
 }

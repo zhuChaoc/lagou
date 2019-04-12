@@ -467,7 +467,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .disableBtn{ background:#93b7bb;}
 .disableBtn:hover{ background:#93b7bb;}
 #box_industry{ position: absolute; z-index:99; background:#fff; border:2px solid #c9cbce; width:606px; padding:15px 0 0 15px;*margin:62px 0 0 -630px;*padding-bottom:15px;}
-#box_industry li{width:138px; font-size:18px; color:#555; margin:0 13px 13px 0; float:left; background:#fafafa; text-align:center; line-height:38px; cursor:pointer;}
+#box_industry select{width:138px; font-size:18px; color:#555; margin:0 13px 13px 0; float:left; background:#fafafa; text-align:center; line-height:38px; cursor:pointer;}
 #box_industry li:hover{ background:#93b7bb; color:#fff;}
 #box_industry li.current{ background:#93b7bb; color:#fff;}
 
@@ -770,13 +770,13 @@ a.greylink{ color:#555;font-size:18px; margin-right:60px;text-decoration:underli
 #logoShow span{position:absolute;bottom:0;height:50px;width:180px;display:block;padding:10px 0 0 10px;background:#000;filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5; cursor:pointer;}
 .c_logo input[type="file"]{width:190px; height:190px; position:absolute; top:0;filter:alpha(Opacity=0);-moz-opacity:0;opacity: 0; cursor:pointer;}
 #box_scale{ position: absolute; z-index:99; background:#fff; border:2px solid #c9cbce; width:606px; padding:15px 0 0 15px;*margin:62px 0 0 -630px;*padding-bottom:15px;}
-#box_scale li{width:138px; font-size:18px; color:#555; margin:0 13px 13px 0; float:left; background:#fafafa; text-align:center; line-height:38px; cursor:pointer;}
-#box_scale li:hover{ background:#93b7bb; color:#fff;}
+#box_scale select{width:138px; font-size:18px; color:#555; margin:0 13px 13px 0; float:left; background:#fafafa; text-align:center; line-height:38px; cursor:pointer;}
+#box_scale select:hover{ background:#93b7bb; color:#fff;}
 #stagesList input[type="text"]{width:360px;margin:0 0 0 10px;}
 #stagesList input[type="button"]{margin-top:22px;}
 .box_invest{ position: absolute; z-index:99; background:#fff; border:2px solid #c9cbce; width:224px; *margin:62px 0 0 -232px;}
-.box_invest li{ font-size:18px; color:#555;  text-align:left; padding-left:20px; line-height:38px; cursor:pointer;}
-.box_invest li:hover{ background:#93b7bb; color:#fff;}
+.box_invest select{ font-size:18px; color:#555;  text-align:left; padding-left:20px; line-height:38px; cursor:pointer;}
+.box_invest select:hover{ background:#93b7bb; color:#fff;}
 
 /**steps page**/
 #stepTip{width:804px;margin:0 auto 30px auto;position:relative;}

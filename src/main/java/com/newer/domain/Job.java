@@ -1,34 +1,43 @@
 package com.newer.domain;
 
-import java.io.Serializable;
+
 import java.sql.Date;
 
-public class Job implements Serializable {
-    private Integer id;//职位id
-    private String jobType;//职位类型
-    private String jobName;//职位名
-    private String dName;//部门名
-    private String jobQuality;//工作性质
-    private Integer minSal;//最低工资
-    private Integer maxSal;//最高工资
-    private String jobCity;//工作城市
-    private String jobExperience;//工作经验
-    private String jobEducation;//学历要求
-    private String jobLightPoint;//职位亮点
-    private String jobInfo;//职位描述
-    private String jobAddress;//工作地址
-    private Date publishTime;//发布时间
-    private String state;//职位状态
-    private Integer subTimes;//订阅次数
+/**
+ * @Author：ningbo
+ * @Date:2019/4/10
+ * @Description:com.newer.domain
+ * @Version:1.0
+ */
+public class Job {
+    private Integer id;
+    private Integer cpId;
+    private String jobType;
+    private String jobName;
+    private String dname;
+    private String jobQuality;
+    private Integer minSal;
+    private Integer maxSal;
+    private String jobCity;
+    private String jobExperience;
+    private String jobEducation;
+    private String jobLightPoint;
+
+    private String jobInfo;
+    private String jobAddress;
+    private Date publishTime;
+    private Integer state;
+    private Integer subTimes;
 
     public Job() {
+
     }
 
-    public Job(Integer id, String jobType, String jobName, String dName, String jobQuality, Integer minSal, Integer maxSal, String jobCity, String jobExperience, String jobEducation, String jobLightPoint, String jobInfo, String jobAddress, Date publishTime, String state, Integer subTimes) {
-        this.id = id;
+    public Job(Integer cpId, String jobType, String jobName, String dname, String jobQuality, Integer minSal, Integer maxSal, String jobCity, String jobExperience, String jobEducation, String jobLightPoint, String jobInfo, String jobAddress) {
+        this.cpId = cpId;
         this.jobType = jobType;
         this.jobName = jobName;
-        this.dName = dName;
+        this.dname = dname;
         this.jobQuality = jobQuality;
         this.minSal = minSal;
         this.maxSal = maxSal;
@@ -38,9 +47,6 @@ public class Job implements Serializable {
         this.jobLightPoint = jobLightPoint;
         this.jobInfo = jobInfo;
         this.jobAddress = jobAddress;
-        this.publishTime = publishTime;
-        this.state = state;
-        this.subTimes = subTimes;
     }
 
     public Integer getId() {
@@ -49,6 +55,14 @@ public class Job implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCpId() {
+        return cpId;
+    }
+
+    public void setCpId(Integer cpId) {
+        this.cpId = cpId;
     }
 
     public String getJobType() {
@@ -67,12 +81,12 @@ public class Job implements Serializable {
         this.jobName = jobName;
     }
 
-    public String getdName() {
-        return dName;
+    public String getDname() {
+        return dname;
     }
 
-    public void setdName(String dName) {
-        this.dName = dName;
+    public void setDname(String dname) {
+        this.dname = dname;
     }
 
     public String getJobQuality() {
@@ -155,11 +169,11 @@ public class Job implements Serializable {
         this.publishTime = publishTime;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
@@ -169,5 +183,28 @@ public class Job implements Serializable {
 
     public void setSubTimes(Integer subTimes) {
         this.subTimes = subTimes;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", cpId=" + cpId +
+                ", jobType='" + jobType + '\'' +
+                ", jobName='" + jobName + '\'' +
+                ", dname='" + dname + '\'' +
+                ", jobQuality='" + jobQuality + '\'' +
+                ", minSal=" + minSal +
+                ", maxSal=" + maxSal +
+                ", jobCity='" + jobCity + '\'' +
+                ", jobExperience='" + jobExperience + '\'' +
+                ", jobEducation='" + jobEducation + '\'' +
+                ", jobLightPoint='" + jobLightPoint + '\'' +
+                ", jobInfo='" + jobInfo + '\'' +
+                ", jobAddress='" + jobAddress + '\'' +
+                ", publishTime=" + publishTime +
+                ", state=" + state +
+                ", subTimes=" + subTimes +
+                '}';
     }
 }

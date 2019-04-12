@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb"><head>
-	<!--</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>--><style type="text/css"></style>
+</script><script type="text/javascript" async="" src="../style/js/conversion.js"></script><script src="../style/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script><style type="text/css"></style>
 <meta content="no-siteapp" http-equiv="Cache-Control">
 <link  media="handheld" rel="alternate">
 <!-- end 云适配 -->
@@ -33,9 +33,7 @@ console.log(1);
 <script type="text/javascript">
 var youdao_conv_id = 271546; 
 </script>
-	<!--
     <script src="../style/js/conv.js" type="text/javascript"></script>
-    -->
 <script src="style/js/ajaxCross.json" charset="UTF-8"></script></head>
 <body>
 <div id="body">
@@ -55,7 +53,7 @@ var youdao_conv_id = 271546;
 	    		    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>${loginer.userName}</span>
+           			<span id="userNames"></span>
             		<span class="red dn" id="noticeDot-1"></span>
             		<i></i>
             	</dt>
@@ -76,7 +74,7 @@ var youdao_conv_id = 271546;
 	                <div class="c_detail">
 	                	<div style="background-color:#fff;" class="c_logo">
 		                	<a title="上传公司LOGO" id="logoShow" class="inline cboxElement" href="#logoUploader">
-		                				                			<img width="190" height="190" alt="公司logo" src="style/images/logo_default.png">
+		                				                			<img width="190" height="190" alt="公司logo" id="cpLogo" src="style/images/logo_default.png">
 	                        		                        	
 	                        	<span>更换公司图片<br>190px*190px 小于5M</span>
 	                        </a>
@@ -92,33 +90,33 @@ var youdao_conv_id = 271546;
 			                </div>
 		                    <span class="error" id="logo_error" style="display:none;"></span>
 						     -->
-		                
+
 	                    <div class="c_box companyName">
-	                    		                   			<h2 title="${company.cpName}">${company.cpName}</h2>
+	                    		                   			<h2 id="cpShorts"></h2>
 	                   			                        
 	                        	                        	<em class="unvalid"></em>
-                        		<span class="va dn">拉勾未认证企业</span>
-	                        	<a target="_blank" class="applyC" href="auth.html">申请认证</a>
+                        		<span class="va dn" id="flags">拉勾未认证企业</span>
+	                        	<a target="_blank" class="applyC" href="auth.html" id="auths">申请认证</a>
 	                        	                        <div class="clear"></div>
 	                       	
-	                       		                   			<h1 title="${company.cpName}" class="fullname">${company.cpName}</h1>
+	                       		                   			<h1 title="" class="fullname" id="fullname"></h1>
 	                        	                        
 	                        <form class="clear editDetail dn" id="editDetailForm">
-	                            <input type="text" placeholder="请输入公司简称" maxlength="15" value="${company.cpShort}" name="cpShort" id="cpShort">
-	                            <input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50" value="${company.cpShortInfo}" name="cpShortInfo" id="cpShortInfo">
+	                            <input type="text" placeholder="请输入公司简称" maxlength="15" value="" name="cpShort" id="cpShort">
+	                            <input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50" value="" name="cpShortInfo" id="cpShortInfo">
 	                            <input type="hidden" value="25927" id="companyId" name="companyId">
 	                            <input type="submit" value="保存" id="saveDetail" class="btn_small">
 	                            <a id="cancelDetail" class="btn_cancel_s" >取消</a>
 		                    </form>
 	                            
-	                        <div class="clear oneword"><img width="17" height="15" src="style/images/quote_l.png">&nbsp; <span>${company.cpShortInfo}</span> &nbsp;<img width="17" height="15" src="style/images/quote_r.png"></div>
+	                        <div class="clear oneword"><img width="17" height="15" src="style/images/quote_l.png">&nbsp; <span id="cpShortInfos"></span> &nbsp;<img width="17" height="15" src="style/images/quote_r.png"></div>
 	                        <h3 class="dn">已选择标签</h3>
 	                        <ul style="overflow:auto" id="hasLabels" class="reset clearfix">
-	                        			                        	<li><span>年终分红</span></li>
+	                        			                        	<!--<li><span>年终分红</span></li>
 		                        		                        	<li><span>五险一金</span></li>
 		                        		                        	<li><span>弹性工作</span></li>
-		                        		                        	<li><span>岗位晋升</span></li>
-		                        	                            <li class="link">编辑</li>
+		                        		                        	<li><span>岗位晋升</span></li>-->
+		                        	                               <li class="link">编辑</li>
 	                        </ul>
 	                        <div class="dn" id="addLabels">
 	                        	<a id="changeLabels" class="change" href="javascript:void(0)">换一换</a>
@@ -249,13 +247,13 @@ var youdao_conv_id = 271546;
                     </dt>
                     <dd>
                     	<ul class="reset stageshow">
-                    		<li>目前阶段：<span class="c5">${company.cpDevelop}</span></li>
+                    		<li>目前阶段：<span class="c5" id="cpDevelop"></span></li>
                     		                    	</ul>
                     	<form class="dn" id="stageform">
                     		<div class="stageSelect">
                     			<label>目前阶段</label>
                     			<input type="hidden" value="天使轮" id="financeStage" name="financeStage">
-	                         	<input type="button" value="${company.cpDevelop}" id="select_fin" class="select_tags_short fl">
+	                         	<input type="button" value="" id="select_fin" class="select_tags_short fl">
 	                            <div class="selectBoxShort dn" id="box_fin" style="display: none;">
 	                                 <ul class="reset">
 	                                 		                                 		
@@ -286,7 +284,7 @@ var youdao_conv_id = 271546;
 		                    				                    <li>
 		                    		<label>融资阶段</label>
 		                    		<input type="hidden" class="select_invest_hidden" name="select_invest_hidden">
-				                    <input type="button" value="${company.cpDevelop}" class="select_tags_short select_invest">
+				                    <input type="button" value="" class="select_tags_short select_invest">
 				                    <div class="selectBoxShort dn" style="display: none;">
 				                        <ul class="reset">
 				                        						                        						                        					                        							                        	<li>天使轮</li>
@@ -298,7 +296,7 @@ var youdao_conv_id = 271546;
 					                        						                        				                        </ul>
 				                    </div>
 				                    <label>投资机构</label>
-				                    <input type="text" placeholder="" name="stageorg" value="${company.cpInvestor}">
+				                    <input type="text" placeholder="" name="stageorg" value="">
 		                    	</li>
 		                    </ul>
 		                    <input type="submit" value="保存" class="btn_small">
@@ -306,7 +304,7 @@ var youdao_conv_id = 271546;
 		                    <div class="clear"></div>
 		                    
 		                    <div class="dn" id="cloneInvest">
-		                    	<label>融资阶段</label>
+		                    	<label>融资阶段：</label>
 	                    		<input type="hidden" class="select_invest_hidden" name="select_invest_hidden">
 			                    <input type="button" value="发展阶段" class="select_tags_short select_invest">
 			                    <div class="selectBoxShort dn" style="display: none;">
@@ -320,13 +318,12 @@ var youdao_conv_id = 271546;
 				                        					                        			                        </ul>
 			                    </div>
 			                    <label>投资机构</label>
-			                    <input type="text" placeholder="如真格基金" name="stageorg">
+			                    <input type="text" placeholder="如真格基金" name="stageorg" id="cpInvestor">
 		                    </div>
 		                </form>
                     </dd>
                 </dl><!-- end .c_stages -->
-       				
-	      
+
 	       		<div id="Member">		
 		       			       		<!--有创始团队-->
 		                <dl class="c_section c_member">
@@ -363,10 +360,10 @@ var youdao_conv_id = 271546;
 												                                大小：小于5M
 						                            </em>
 						                        </div>
-						                        <input type="text" placeholder="请输入创始人姓名" value="孙泰英" name="name">
-					                            <input type="text" placeholder="请输入创始人当前职位" value="ceo" name="position">	
-					                            <input type="text" placeholder="请输入创始人新浪微博地址" value="http://weimob.weibo.com" name="weibo">	
-					                            <textarea placeholder="请输入创始人个人简介" maxlength="500" class="s_textarea" name="remark">发放的发达范德萨范德萨范德萨发的复大发大水发生的</textarea>	
+						                        <input type="text" placeholder="请输入创始人姓名" value="" name="name">
+					                            <input type="text" placeholder="请输入创始人当前职位" value="" name="position">
+					                            <input type="text" placeholder="请输入创始人新浪微博地址" value="" name="weibo">
+					                            <textarea placeholder="请输入创始人个人简介" maxlength="500" class="s_textarea" name="remark"></textarea>
 					                            <div class="word_count fr">你还可以输入 <span>500</span> 字</div>
 					                            <div class="clear"></div>
 					                            <input type="submit" value="保存" class="btn_small">
@@ -376,18 +373,8 @@ var youdao_conv_id = 271546;
 				                        </div>
 				                        
 				                        <!-- 显示创始人 -->
-				                    	<div class="member_info">
-	                    					<a title="编辑创始人" class="c_edit member_edit" href="javascript:void(0)"></a>
-				                        	<div class="m_portrait">
-				                            	<div></div>
-				                            	<img width="120" height="120" alt="孙泰英" src="style/images/leader_default.png">
-					                        </div>
-				                            <div class="m_name">
-				                            	孙泰英 
-			                            		                            						<a target="_blank" class="weibo" href="http://weimob.weibo.com"></a>
-				                            					                            </div>
-				                            <div class="m_position">ceo</div>
-				                    		<div class="m_intro">发放的发达范德萨范德萨范德萨发的复大发大水发生的</div>
+				                    	<div class="member_info" id="showCr">
+
 				                        </div>
 				                        
 				                     </div><!-- end .member_wrap -->
@@ -487,21 +474,63 @@ var youdao_conv_id = 271546;
 
 <script>
 	$(()=>{
+		var userName=localStorage.getItem("userName")
+		$("#userNames").text(userName)
 		$.ajax({
 			url:"company/findAll",
 			type:"GET",
 			dataType:"json",
 			success:(data)=>{
+				if (data.company.cpLogo!=null){
+					var urls="images/"+data.company.cpLogo
+					$("#cpLogo").attr("src",urls)
+				}
+				if (data.company.cpLicense!=null){
+					//$("em class").attr("class",valid)
+					$("#flags").text("拉勾网认证用户")
+					$("#auths").hidden
+				}
+				$("#cpShorts").text(data.company.cpName)
+				$("#cpShort").val(data.company.cpShort)
+				$("#fullname").text(data.company.cpName)
+				$("#cpShortInfos").text(data.company.cpShortInfo)
+				$("#cpDevelop").val(data.company.cpDevelop)
 				console.log(data.id)
+				if (data.company.crteam!=null){
+					data.company.crteam.forEach(cr=>{
+						$div=$(`<a title="编辑创始人" class="c_edit member_edit" href="javascript:void(0)"></a>
+				                        	<div class="m_portrait">
+				                            	<div></div>
+				                            	<img width="120" height="120" alt="" src="images/${cr.ownPhoto}" id="ownPhoto">
+					                        </div>
+				                            <div class="m_name">
+												<span id="createName${cr.id}"></span>
+												<a target="_blank" class="weibo" href="${cr.ownUrl}">${cr.ownUrl}</a>
+				                            </div>
+				                            <div class="m_position" id="m_position${cr.id}">${cr.job}</div>
+				                    		<div class="m_intro" id="m_intro${cr.id}">${cr.ownInfo}</div>`)
+						$("#showCr").append($div)
+					})
+				}
+
+				if (data.company.cpInfo.cpTig!=null&&data.company.cpInfo.cpTig!=''){
+					var tig=data.company.cpInfo.cpTig.split(",")
+					for(var i=0;i<tig.length;i++){
+						console.log(tig[i])
+						$("#hasLabels").append($(`<li><span>${tig[i]}</span></li>`))
+					}
+
+
+				}
 				//公司介绍加载
 				$("#profile_wrap").empty()
-				if (data.cpInfo!=null&&data.cpInfo!=''){
+				if (data.company.cpInfo!=null&&data.company.cpInfo!=''){
 					let $cpInfo=$(`<dl class="c_section">
 					               		<dt>
 					                   		<h2><em></em>公司介绍</h2>
 					                   	</dt>
 					                   	<dd>
-					                   		<div class="c_intro">${data.cpInfo.cpLongInfo}</div>
+					                   		<div class="c_intro">${data.company.cpInfo.cpLongInfo}</div>
 					                   		<a title="编辑公司介绍" id="editIntro" class="c_edit" href="javascript:void(0)"></a>
 					                   	</dd>
 					               	</dl>`)
@@ -536,19 +565,19 @@ var youdao_conv_id = 271546;
 				}
 				//公司产品介绍
 				$("#product_wrap").empty()
-				if(data.cpProducts!=null&&data.cpProducts!=''){
-					data.cpProducts.forEach(products=>{
+				if(data.company.cpProducts!=null&&data.company.cpProducts!=''){
+					data.company.cpProducts.forEach(products=>{
 						let $product=$(`<dl class="c_product">
 					                	<dt>
 					                    	<h2><em></em>公司产品</h2>
 					                    </dt>
 					                    <dd>
-					                    	<img width="380" height="220" alt="" src="style/images/product_default.png">
+					                    	<img width="380" height="220" alt="" src="images/${products.productPhoto}">
 				                        	<div class="cp_intro">
-				                        						                        		<h3><a target="_blank" href="http://www.weimob.com"></a></h3>
+				                        		<h3><a target="_blank" href="${products.productUrl}">产品展示</a></h3>
 					                            <div class="scroll-pane" style="overflow: hidden; padding: 0px; width: 260px;">
 
-					                            <div class="jspContainer" style="width: 260px; height: 140px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 260px;"><div>${data.cpProducts.productInfo}</div></div></div></div>
+					                            <div class="jspContainer" style="width: 260px; height: 140px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 260px;"><div></div>${products.productInfo}</div></div></div>
 					                        </div>
 					                        <a title="编辑公司产品" class="c_edit product_edit" href="javascript:void(0)"></a>
 					            								            			<a title="新增公司产品" class="c_add product_add" href="javascript:void(0)"></a>
@@ -571,7 +600,7 @@ var youdao_conv_id = 271546;
 					                    </dd>
 					                </dl>
 
-					            	<!--产品编辑-->
+
 					                <dl id="newProduct" class="newProduct dn">
 					                	<dt>
 					                    	<h2><em></em>公司产品</h2>
@@ -614,37 +643,37 @@ var youdao_conv_id = 271546;
 				}
 
 				//公司规模
-				if(data.cpCity!=null&&data.cpCity!=''){
+				if(data.company.cpCity!=null&&data.company.cpCity!=''){
 					$("#c_tags_show").empty()
 					let $tag=$(`<table>
 	                        <tbody><tr>
 	                            <td width="45">地点</td>
-	                            <td>${company.cpCity}</td>
+	                            <td>${data.company.cpCity}</td>
 	                        </tr>
 	                        <tr>
-	                            <td>领域</td><!-- 支持多选 -->
-	                            <td title="移动互联网">${company.cpArea}</td>
+	                            <td>领域</td>
+	                            <td title="移动互联网">${data.company.cpArea}</td>
 	                        </tr>
 	                        <tr>
 	                            <td>规模</td>
-	                            <td>${company.cpSize}</td>
+	                            <td>${data.company.cpSize}</td>
 	                        </tr>
 	                        <tr>
 	                            <td>主页</td>
 	                            <td>
-	                            	            							<a rel="nofollow" title="${company.cpUrl}" target="_blank" href="${company.cpUrl}">${company.cpUrl}</a>
+	                            	            							<a rel="nofollow" title="${data.company.cpUrl}" target="_blank" href="${data.company.cpUrl}">${data.company.cpUrl}</a>
             							                            </td>
 	                        </tr>
 	                    </tbody></table>
 	                    <a id="editTags" class="c_edit" href="javascript:void(0)"></a>`)
 					$("#c_tags_show").append($tag)
 				}
-				//
 			}
 		})
 	})
 </script>
-<script src="style/js/company.min.js" type="text/javascript"></script>
+<!--<script src="style/js/company.min.js" type="text/javascript"></script>-->
+		<script src="style/js/jquery-3.2.1.js"></script>
 <script>
 var avatar = {};
 avatar.uploadComplate = function( data ){
@@ -670,8 +699,8 @@ avatar.uploadComplate = function( data ){
 		</div>
 	</div>
 
-<!--<script src="style/js/core.min.js" type="text/javascript"></script>
-<script src="style/js/popup.min.js" type="text/javascript"></script>-->
+<script src="style/js/core.min.js" type="text/javascript"></script>
+<!--<script src="style/js/popup.min.js" type="text/javascript"></script>-->
 
 <!--  -->
 

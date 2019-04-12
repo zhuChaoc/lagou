@@ -126,9 +126,13 @@ var youdao_conv_id = 271546;
 			data:formData,
 			processData: false,
 			contentType:false,
-			success:(data)=>{
-				alert("成功")
-				location.href="myhome.html"
+			success:(data)=> {
+				if (data.msg == "suc") {
+
+					location.href = "myhome.html"
+				}else{
+					alert("请重新填写")
+				}
 			}
 		})
 	}

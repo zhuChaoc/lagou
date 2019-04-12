@@ -47,6 +47,6 @@
       cpshortinfo, ci.id cpinfoid,cptig,cplonginfo,cr.id crid,createname,job,ownurl,owninfo,ownphoto,
       product.id productid,productname,producturl,productinfo,productphoto from
        ((lagou.company cp join lagou.cpinfo ci on cp.id=ci.cpid) join lagou.crteam cr on cp.id=cr.cpid)
-        join lagou.cpproduct product on cp.id=product.cpid
+        join lagou.cpproduct product on cp.id=product.cpid where cp.id=#{cpId}
   </select>
 </mapper>  

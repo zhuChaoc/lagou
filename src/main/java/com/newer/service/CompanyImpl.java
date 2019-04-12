@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED,readOnly = true)
 public class CompanyImpl implements  CompanyService{
@@ -59,14 +61,14 @@ public class CompanyImpl implements  CompanyService{
 
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
     @Override
-    public int addcrteam(CrTeam crTeam, int cpId) {
-        return companyMapper.addcrteam(crTeam,cpId);
+    public int addcrteam(Map<String ,Object>map) {
+        return companyMapper.addcrteam(map);
     }
 
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
     @Override
-    public int addproduct(CpProduct cpProduct, int cpId) {
-        return companyMapper.addproduct(cpProduct,cpId);
+    public int addproduct(Map<String ,Object> map) {
+        return companyMapper.addproduct(map);
     }
 
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
@@ -81,8 +83,24 @@ public class CompanyImpl implements  CompanyService{
         return companyMapper.addindex2(cpLicense,id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
     @Override
-    public Company findAll() {
-        return companyMapper.findAll();
+    public int addtag3(int cpId,String cpLongInfo) {
+        return companyMapper.addtag3(cpId,cpLongInfo);
+    }
+
+    @Override
+    public Company findAll(int cpId) {
+        return companyMapper.findAll(cpId);
+    }
+
+    @Override
+    public Company check(int userId) {
+        return companyMapper.check(userId);
+    }
+
+    @Override
+    public int findcpId(int userId) {
+        return companyMapper.findcpId(userId);
     }
 }

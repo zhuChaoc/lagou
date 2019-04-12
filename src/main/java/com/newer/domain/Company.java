@@ -194,4 +194,28 @@ public class Company implements Serializable {
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", cpName='" + cpName + '\'' +
+                ", cpPhone='" + cpPhone + '\'' +
+                ", cpEmail='" + cpEmail + '\'' +
+                ", cpShort='" + cpShort + '\'' +
+                ", cpLogo='" + cpLogo + '\'' +
+                ", cpLicense='" + cpLicense + '\'' +
+                ", cpUrl='" + cpUrl + '\'' +
+                ", cpCity='" + cpCity + '\'' +
+                ", cpArea='" + cpArea + '\'' +
+                ", cpSize='" + cpSize + '\'' +
+                ", cpDevelop='" + cpDevelop + '\'' +
+                ", cpInvestor='" + cpInvestor + '\'' +
+                ", cpShortInfo='" + cpShortInfo + '\'' +
+                ", cpInfo=" + cpInfo +
+                ", crTeams=" + crTeams +
+                ", cpProducts=" + cpProducts +
+                ", jobs=" + jobs +
+                '}';
+    }
 }
