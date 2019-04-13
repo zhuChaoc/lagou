@@ -44,10 +44,14 @@ public interface CompanyMapper {
 
    Company findAll(@Param("cpId")int cpId);
 
+   Company findOneConpany(@Param("cpId") int cpId);
    @Select("select cp.id,cpname,cpphone,cpemail,cpshort from lagou.company cp join lagou.user_company uc on cp.id=uc.cpid" +
            "  where uc.userid=#{userId} ")
    Company check(@Param("userId")int userId);
 
    @Select("select cp.cpid from lagou.user_company cp join lagou.user us on cp.userid=us.id where cp.userid=#{userId}")
    int findcpId(@Param("userId")int userId);
+
+   @Update("update lagou.company set cplicense=#{cpLicense} where id=#{cpId}")
+   int updatelicense(@Param("cpLicense")String cpLicense,@Param("cpId") int cpId);
 }

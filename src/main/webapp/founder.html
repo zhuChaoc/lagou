@@ -61,7 +61,6 @@ var youdao_conv_id = 271546;
                                 	<dd><a href="positions.html">我发布的职位</a></dd>
                 	<dd><a href="positions.html">我收到的简历</a></dd>
                 	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
-                	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
             </dl>
@@ -93,7 +92,7 @@ var youdao_conv_id = 271546;
 			                        	<img width="120" height="120" src="">
 			                        	<span>更换头像</span>
 			                        </div>
-									<div class="portraitShow dn">
+									<div id="portraitShow1">
 										<img width="120" height="120" src="" id="showimg">
 									</div>
 			                        <input type="file" value="" title="支持jpg、jpeg、gif、png格式，文件小于5M" onchange="viewimg(this)" name="ownPhoto" id="ownPhoto" class="myfiles">
@@ -133,6 +132,7 @@ var youdao_conv_id = 271546;
 
 <script>
 	$(()=>{
+		$("#portraitShow1").hide()
 		let userName=localStorage.getItem("userName")
 		$("#userNames").text(userName)
 	})
@@ -180,7 +180,9 @@ var youdao_conv_id = 271546;
 		rd.readAsDataURL(files);//文件读取装换为base64类型
 		rd.onloadend = function(e) {
 			//加载完毕之后获取结果赋值给img
-			$("#portraitShow0").hidden
+			$("#portraitShow0").hide()
+			$("#portraitNo0").hide()
+			$("#portraitShow1").show()
 			document.getElementById("showimg").src = this.result;
 		}
 	}

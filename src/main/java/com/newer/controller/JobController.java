@@ -42,7 +42,7 @@ public class JobController {
         System.out.println(job);
         if(jobService.addJob(job)>0){
             result.put("success",true);
-            result.put("content","myhome.html");
+            result.put("content","positions.html");
         }else {
             result.put("msg","发布新职位失败！");
         }
@@ -77,5 +77,32 @@ public class JobController {
         return map;
     }
 
+    @RequestMapping("/updatestate")
+    public Map<String,Object>updatestate(@RequestParam("id")int id,HttpSession session){
+        Map<String,Object>map=new HashMap<>();
+        Company company= (Company) session.getAttribute("company");
+        int count=jobService.updatestate(id,company.getId());
+        if (count>0){
+            map.put("msg",true);
+        }else{
+            map.put("msg",false);
+        }
+
+        return map;
+    }
+
+    @RequestMapping("/deletejob")
+    public Map<String,Object>deletejob(@RequestParam("id")int id){
+        Map<String,Object>map=new HashMap<>();
+
+        int count=jobService.deletejob(id);
+        if (count>0){
+            map.put("msg",true);
+        }else{
+            map.put("msg",false);
+        }
+
+        return map;
+    }
 
 }

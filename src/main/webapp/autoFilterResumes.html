@@ -41,19 +41,19 @@ var youdao_conv_id = 271546;
     		</a>
     		<ul id="navheader" class="reset">
     			<li><a href="index.html">首页</a></li>
-    			<li><a href="companylist.html">公司</a></li>
+    			<li><a href="myhome.html">公司</a></li>
     			<li><a target="_blank" href="">论坛</a></li>
-    				    			<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
+
 	    						    		</ul>
         	        	<dl class="collapsible_menu">
             	<dt>
-           			<span>jason&nbsp;</span> 
+           			<span id="userNames"></span>
             		<span class="red dn" id="noticeDot-0"></span>
             		<i></i>
             	</dt>
-                                	<dd><a rel="nofollow" href="jianli.html">我的简历</a></dd>
+
                 	                	<dd><a href="collections.html">我收藏的职位</a></dd>
-                	                	                	<dd><a href="delivery.html">我投递的职位 <span id="noticeNo" class="red dn">(0)</span></a></dd>
+
                 	                	<dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
                 	<dd><a href="create.html">我要招人</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
@@ -95,7 +95,7 @@ var youdao_conv_id = 271546;
 		<a href="positions.html">有效职位</a>
 	</dd>
 	<dd>
-		<a href="positions.html">已下线职位</a>
+		<a href="positions2.html">已下线职位</a>
 	</dd>
 	</dl>
             </div><!-- end .sidebar -->
@@ -196,7 +196,7 @@ var youdao_conv_id = 271546;
 			                                        </div>
 			                                    </div>
 			                                    <div class="links">
-			                                       	<a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)">通知面试</a>
+			                                       	<a data-deliverid="1686182" data-name="lagou" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" href="javascript:void(0)">通知面试</a>
  													<a data-deliverid="1686182" class="resume_refuse" href="javascript:void(0)">不合适</a>
  													<a data-deliverid="1686182" class="resume_caninterview" href="javascript:void(0)">待定</a>
                                                     <a data-resumename="jason的简历" data-positionname="随便写" data-deliverid="1686182" data-positionid="149594" data-resumekey="1ccca806e13637f7b1a4560f80f08057" data-forwardcount="1" class="resume_forward" href="javascript:void(0)">
@@ -426,7 +426,12 @@ var youdao_conv_id = 271546;
 <script src="style/js/popup.min.js" type="text/javascript"></script>
 
 <!--  -->
-
+<script>
+	$(()=>{
+		let userName=localStorage.getItem("userName")
+		$("#userNames").text(userName)
+	})
+</script>
 <script type="text/javascript">
 $(function(){
 	$('#noticeDot-1').hide();

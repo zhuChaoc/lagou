@@ -29,7 +29,11 @@ public interface CompanyService {
 
     Company findAll(int cpId);
 
+    Company findOneConpany(int cpId);
+
     Company check(int userId);
 
     int findcpId(int userId);
+
+    int updatelicense(String cpLicense,int cpId);
 }

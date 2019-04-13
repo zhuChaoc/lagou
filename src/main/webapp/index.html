@@ -2181,9 +2181,9 @@
                     $("#header").trigger("create")
 					$(".loginTop").hidden
 				localStorage.setItem("userName",authUser.user.userName)
-				//当session中的用户类型为招人时,让让简历管理和发布职位菜单隐藏
+				//当session中的用户类型为招人时,让简历管理和发布职位菜单隐藏
 				if(authUser.user.level==1){
-                	 $("#jianli").show()
+                	 $("#jianli").hide()
                   	$("#postjob").show()
 				}
             }

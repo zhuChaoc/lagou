@@ -103,4 +103,14 @@ public class CompanyImpl implements  CompanyService{
     public int findcpId(int userId) {
         return companyMapper.findcpId(userId);
     }
+
+    @Override
+    public Company findOneConpany(int cpId) {
+        return companyMapper.findOneConpany(cpId);
+    }
+
+    @Override
+    public int updatelicense(String cpLicense, int cpId) {
+        return companyMapper.updatelicense(cpLicense,cpId);
+    }
 }

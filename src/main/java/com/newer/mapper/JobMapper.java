@@ -2,9 +2,7 @@ package com.newer.mapper;
 
 import com.newer.domain.Job;
 import com.newer.domain.JobType;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -26,4 +24,13 @@ public interface JobMapper {
 
     @Select("select * from lagou.job where cpid=#{cpId}")
     List<Job>findAll(@Param("cpId")int cpId);
+
+    @Select("select * from lagou.job where id=#{id} and cpid={cpId}")
+    Job findById(@Param("id")int id,@Param("cpId")int cpId);
+
+    @Update("update lagou.job set state=abs(state-1) where id=#{id} and cpid=#{cpId}")
+    int updatestate(@Param("id")int id,@Param("cpId")int cpId);
+
+    @Delete("delete from lagou.job where id=#{id}")
+    int deletejob(@Param("id")int id);
 }

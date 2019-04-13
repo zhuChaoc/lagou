@@ -1,6 +1,8 @@
 package com.newer.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Date;
 
 /**
@@ -25,6 +27,7 @@ public class Job {
 
     private String jobInfo;
     private String jobAddress;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date publishTime;
     private Integer state;
     private Integer subTimes;

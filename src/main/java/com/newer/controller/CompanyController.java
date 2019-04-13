@@ -5,6 +5,7 @@ import com.newer.service.CompanyService;
 import com.newer.util.SecurityCode;
 import com.newer.util.SendmailUtil;
 import org.apache.commons.lang.StringUtils;
+import org.omg.CORBA.MARSHAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +33,7 @@ public class CompanyController {
         int count=companyService.addCompany1(cpPhone, cpEmail, user.getId());
         if (count>0){
             map.put("msg","suc");
-            System.out.println("测试成功");
+
             Company company = companyService.findByParam1(cpPhone, cpEmail);
             session.setAttribute("company", company);
         }else{
@@ -287,25 +288,32 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/auth", produces = "application/json;charset=UTF-8")
-    public void auth(@RequestParam("file") MultipartFile[] multipartFiles, HttpSession session) {
-
+    public Map<String,Object> auth(@RequestParam("file") MultipartFile[] multipartFiles, HttpSession session) {
+        Map<String,Object>map=new HashMap<>();
         Company company = (Company) session.getAttribute("company");
 
         String cpLicense = "";
         String path = session.getServletContext().getRealPath("images");
         try {
             for (MultipartFile multipartFile : multipartFiles) {
-                String ext = StringUtils.substring(multipartFile.getOriginalFilename(), multipartFile.getOriginalFilename().lastIndexOf("."));
-                cpLicense = UUID.randomUUID().toString() + ext;
+                cpLicense =multipartFile.getOriginalFilename();
                 File file=new File(path,cpLicense);
                 multipartFile.transferTo(file);
-                company.setCpLicense(cpLicense);
-                session.setAttribute("company",company);
+                int count=companyService.updatelicense(cpLicense,company.getId());
+                if (count>0){
+                    company.setCpLicense(cpLicense);
+                    session.setAttribute("company",company);
+                    map.put("msg",true);
+                }else{
+                    map.put("msg",false);
+                }
+
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return  map;
     }
 
     @GetMapping("findAll")
@@ -318,4 +326,11 @@ public class CompanyController {
         return map;
     }
 
+    @GetMapping("/inits")
+    public  Map<String,Object> inits(HttpSession session){
+        Map<String ,Object>map=new HashMap<>();
+        session.invalidate();
+        map.put("msg",true);
+        return map;
+    }
 }

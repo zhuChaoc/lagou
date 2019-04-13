@@ -42,4 +42,20 @@ public class JobServiceImpl implements JobService {
     public List<Job> findAll(int cpId) {
         return jobMapper.findAll(cpId);
     }
+
+    @Override
+    public Job findById(int id, int cpId) {
+        return jobMapper.findById(id,cpId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
+    @Override
+    public int updatestate(int id, int cpId) {
+        return jobMapper.updatestate(id,cpId);
+    }
+
+    @Override
+    public int deletejob(int id) {
+        return jobMapper.deletejob(id);
+    }
 }

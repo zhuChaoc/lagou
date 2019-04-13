@@ -66,7 +66,7 @@ public class UserController {
             result.put("success",true);
             authUser.getUser().setUserName(user.getUserName());
             authUser.getUser().setJob(user.getJob());
-
+            session.setAttribute("loginer",authUser);
         }else {
             result.put("msg","保存失败！");
         }
@@ -82,16 +82,21 @@ public class UserController {
     @RequestMapping("/login")
     public Map<String,Object> login(@RequestParam("email") String email,@RequestParam("password") String password,HttpSession session) throws Exception {
         Map<String,Object> result=new HashMap<>();
+        System.out.println(email+password);
         String password2 = MD5.getInstance().getMD5ofStr(password);
         AuthUser authUser = userService.login(email,password2);
 
         if(authUser!=null){
+
             result.put("success",true);
             int cpId=companyService.findcpId(authUser.getUser().getId());
-            Company company=companyService.findAll(cpId);
+
+            Company company=companyService.findOneConpany(cpId);
+            System.out.println(company);
             session.setAttribute("company",company);
             session.setAttribute("loginer",authUser);
             result.put("cpEmail",company.getCpEmail());
+            System.out.println("测试2");
         }else {
             result.put("msg","用户名或者密码不对！");
         }

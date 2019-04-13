@@ -86,10 +86,10 @@ var youdao_conv_id = 271546;
 </dl>
 <dl class="company_center_aside">
 		<dt>我发布的职位</dt>
-			<dd class="current">
+			<dd >
 		<a href="positions.html">有效职位</a>
 	</dd>
-	<dd>
+	<dd class="current">
 		<a href="positions2.html">已下线职位</a>
 	</dd>
 	</dl>
@@ -99,7 +99,7 @@ var youdao_conv_id = 271546;
                     <dt>
                         <h1>
                             <em></em>
-                           有效职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber"></i>个）</span>                        </h1>
+                           已下线职位 <span>（共<i style="color:#fff;font-style:normal" id="positionNumber"></i>个）</span>                        </h1>
                     </dt>
 
                 </dl>
@@ -128,40 +128,19 @@ var youdao_conv_id = 271546;
 <script>
 
 	function deletejob(id) {
-		if (confirm("确认要删除吗?")) {
-			$.ajax({
-				url: "jobs/deletejob",
-				type: "POST",
-				dataType: "json",
-				data: {id: id},
-				success: (data) => {
-					if (data.msg) {
-						location.href = "positions.html"
-					} else {
-						alert("下线失败")
-					}
-				}
-			})
-		}
-	}
-	function updatejobstate(id){
 		$.ajax({
-			url:"jobs/updatestate",
+			url:"jobs/deletejob",
 			type:"POST",
-			dataType: "json",
+			dataType:"json",
 			data:{id:id},
 			success:(data)=>{
 				if (data.msg){
 					location.href="positions.html"
 				}else{
-					alert("删除失败")
+					alert("下线失败")
 				}
 			}
 		})
-	}
-	function turnup(id){
-		localStorage.setItem("id",id)
-		location.href="create.html"
 	}
 	$(()=>{
 		$.ajax({
@@ -172,7 +151,7 @@ var youdao_conv_id = 271546;
 				if (data.msg){
 					$("#positionNumber").text(data.jobs.length)
 					data.jobs.forEach(job=>{
-						if (job.state==1){
+						if (job.state==0){
 						 let $dd=``;
 						$dd+=`<dd>
                     		                    	<form id="searchForm">
@@ -183,13 +162,11 @@ var youdao_conv_id = 271546;
 		                                        <a target="_blank" title="" href="jianli.html" id="jobName">${job.jobName}</a>
 		                                        <span id="jobCity">${job.jobCity}</span>
 		                                        						                        		                                    </h3>
-		                                    		                                  		<span class="receivedResumeNo"><a href="unHandleResumes.html?positionId=149594">应聘简历（1）</a></span>
+		                                    		                                  		<span class="receivedResumeNo"></span>
 		                                  			                                    <div id="jobDetail">${job.jobQuality}/${job.minSal}-${job.maxSal}/${job.jobExperience}/${job.jobEducation}</div>
 		                                    		                                    				                                    <div class="c9">发布时间:<span id="publishTime">${job.publishTime}</span></div>
 			                                    		                                    		                                    		                                    <div class="links">
-		                                    			                                       	<a class="job_refresh" href="javascript:void(0)">刷新<span>每个职位7天内只能刷新一次</span></a>
-		                                       			                                       	<a target="_blank" class="job_edit" href="javascript:void(0)" onclick="turnup(${job.id})">编辑</a>
-		                                       	<a class="job_offline" href="javascript:void(0)" onclick="updatejobstate(${job.id})">下线</a>
+
 		                                        <a class="job_del" href="javascript:void(0)" onclick="deletejob(${job.id})" id="del${job.id}">删除</a>
 		                                    </div>
 		                                    		                                </li>

@@ -49,4 +49,8 @@
        ((lagou.company cp join lagou.cpinfo ci on cp.id=ci.cpid) join lagou.crteam cr on cp.id=cr.cpid)
         join lagou.cpproduct product on cp.id=product.cpid where cp.id=#{cpId}
   </select>
+
+  <select id="findOneConpany" resultMap="com1">
+    select * from lagou.company where id=#{cpId}
+  </select>
 </mapper>  

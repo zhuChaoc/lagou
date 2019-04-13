@@ -17,4 +17,10 @@ public interface JobService {
     int checkcity(String cityName);
 
     List<Job>findAll(int cpId);
+
+    Job findById(int id,int cpId);
+
+    int updatestate(int id,int cpId);
+
+    int deletejob(int id);
 }

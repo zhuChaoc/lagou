@@ -5,7 +5,7 @@
 <link  media="handheld" rel="alternate">
 <!-- end 云适配 -->
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>${company.cpName}-拉勾网-最专业的互联网招聘平台</title>
+<title>拉勾网-最专业的互联网招聘平台</title>
 <meta content="23635710066417756375" property="qc:admins">
 <!--<meta name="description" content="平潭协创进出口贸易有限公司 福建平潭协创进出口贸易有限公司 上海 移动互联网 天使轮 150-500人 测试的发打发打发大范德萨发">
 <meta name="keywords" content="平潭协创进出口贸易有限公司 福建平潭协创进出口贸易有限公司 上海 移动互联网 天使轮 150-500人 测试的发打发打发大范德萨发">-->
@@ -60,7 +60,6 @@ var youdao_conv_id = 271546;
                                 	<dd><a href="positions.html">我发布的职位</a></dd>
                 	<dd><a href="">我收到的简历</a></dd>
                 	<dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
-                	<dd><a href="jianli.html">我要找工作</a></dd>
                                                 <dd><a href="accountBind.html">帐号设置</a></dd>
                                 <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
             </dl>
@@ -76,7 +75,7 @@ var youdao_conv_id = 271546;
 		                	<a title="上传公司LOGO" id="logoShow" class="inline cboxElement" href="#logoUploader">
 		                				                			<img width="190" height="190" alt="公司logo" id="cpLogo" src="style/images/logo_default.png">
 	                        		                        	
-	                        	<span>更换公司图片<br>190px*190px 小于5M</span>
+	                        	<span id="changes">更换公司图片<br>190px*190px 小于5M</span>
 	                        </a>
 		                </div>
 		                
@@ -94,7 +93,7 @@ var youdao_conv_id = 271546;
 	                    <div class="c_box companyName">
 	                    		                   			<h2 id="cpShorts"></h2>
 	                   			                        
-	                        	                        	<em class="unvalid"></em>
+	                        	                        	<em class="unvalid" id="ems"></em>
                         		<span class="va dn" id="flags">拉勾未认证企业</span>
 	                        	<a target="_blank" class="applyC" href="auth.html" id="auths">申请认证</a>
 	                        	                        <div class="clear"></div>
@@ -482,33 +481,35 @@ var youdao_conv_id = 271546;
 			dataType:"json",
 			success:(data)=>{
 				if (data.company.cpLogo!=null){
+					$("#changes").hide()
 					var urls="images/"+data.company.cpLogo
 					$("#cpLogo").attr("src",urls)
 				}
 				if (data.company.cpLicense!=null){
-					//$("em class").attr("class",valid)
+					$("#ems").attr("class","valid")
 					$("#flags").text("拉勾网认证用户")
-					$("#auths").hidden
+					$("#auths").hide()
 				}
 				$("#cpShorts").text(data.company.cpName)
 				$("#cpShort").val(data.company.cpShort)
 				$("#fullname").text(data.company.cpName)
 				$("#cpShortInfos").text(data.company.cpShortInfo)
-				$("#cpDevelop").val(data.company.cpDevelop)
-				console.log(data.id)
-				if (data.company.crteam!=null){
-					data.company.crteam.forEach(cr=>{
+				$("#cpDevelop").text(data.company.cpDevelop)
+
+				if (data.company.crTeams!=null){
+					data.company.crTeams.forEach(cr=>{
 						$div=$(`<a title="编辑创始人" class="c_edit member_edit" href="javascript:void(0)"></a>
 				                        	<div class="m_portrait">
 				                            	<div></div>
 				                            	<img width="120" height="120" alt="" src="images/${cr.ownPhoto}" id="ownPhoto">
 					                        </div>
 				                            <div class="m_name">
-												<span id="createName${cr.id}"></span>
-												<a target="_blank" class="weibo" href="${cr.ownUrl}">${cr.ownUrl}</a>
+												<span id="${cr.id}">${cr.createName}</span>
+
 				                            </div>
 				                            <div class="m_position" id="m_position${cr.id}">${cr.job}</div>
-				                    		<div class="m_intro" id="m_intro${cr.id}">${cr.ownInfo}</div>`)
+				                    		<div class="m_intro" id="m_intro${cr.id}">${cr.ownInfo}</div>
+											<div><a target="_blank" class="weibo" href="http://${cr.ownUrl}">http://${cr.ownUrl}</a></div>`)
 						$("#showCr").append($div)
 					})
 				}
@@ -574,7 +575,7 @@ var youdao_conv_id = 271546;
 					                    <dd>
 					                    	<img width="380" height="220" alt="" src="images/${products.productPhoto}">
 				                        	<div class="cp_intro">
-				                        		<h3><a target="_blank" href="${products.productUrl}">产品展示</a></h3>
+				                        		<h3><a target="_blank" href="http://${products.productUrl}">${products.productName}</a></h3>
 					                            <div class="scroll-pane" style="overflow: hidden; padding: 0px; width: 260px;">
 
 					                            <div class="jspContainer" style="width: 260px; height: 140px;"><div class="jspPane" style="padding: 0px; top: 0px; width: 260px;"><div></div>${products.productInfo}</div></div></div>
@@ -661,7 +662,7 @@ var youdao_conv_id = 271546;
 	                        <tr>
 	                            <td>主页</td>
 	                            <td>
-	                            	            							<a rel="nofollow" title="${data.company.cpUrl}" target="_blank" href="${data.company.cpUrl}">${data.company.cpUrl}</a>
+	                            	            							<a rel="nofollow" title="${data.company.cpUrl}" target="_blank" href="http://${data.company.cpUrl}">${data.company.cpUrl}</a>
             							                            </td>
 	                        </tr>
 	                    </tbody></table>

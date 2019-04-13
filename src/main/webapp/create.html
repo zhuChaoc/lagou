@@ -298,8 +298,8 @@ var youdao_conv_id = 271546;
 								<tr>
                                 	<td width="25"><span class="redstar">*</span></td>
                                 	<td colspan="2">
-                                    	接收简历邮箱： <span id="receiveEmailVal">admin@admin.com</span>
-                                        <input type="hidden" value="admin@admin.com" id="receiveEmail" name="email">
+                                    	接收简历邮箱： <span id="receiveEmailVal"></span>
+                                        <input type="hidden" value="" id="receiveEmail" name="email">
                                     </td>
                                 </tr>
 
@@ -399,27 +399,28 @@ $(function(){
 		data:{id:id},
         type:'GET',
         success:function (result) {
-            //定义一个一级菜单的集合变量
-            let $first=``;
-			//循环一级组合集合
-            result.firstJobTypeGroupList.forEach(firstJobTypeGroup=>{
-                let $second=``;
-                firstJobTypeGroup.secondJobTypes.forEach(secondJobTypeGroup=> {
-                    let $third = ``;
+			if (result.firstJobTypeGroupList != null) {
+				//定义一个一级菜单的集合变量
+				let $first = ``;
+				//循环一级组合集合
+				result.firstJobTypeGroupList.forEach(firstJobTypeGroup => {
+					let $second = ``;
+					firstJobTypeGroup.secondJobTypes.forEach(secondJobTypeGroup => {
+						let $third = ``;
 
-                    if (secondJobTypeGroup.jobTypes) {
-                        secondJobTypeGroup.jobTypes.forEach(jobType => {
-                            $third += `<li>${jobType.name}</li>`
-                        })
-                    }
-                    $second+=`<li>
+						if (secondJobTypeGroup.jobTypes) {
+							secondJobTypeGroup.jobTypes.forEach(jobType => {
+								$third += `<li>${jobType.name}</li>`
+							})
+						}
+						$second += `<li>
                             <span>${secondJobTypeGroup.jobType.name}</span>
                             <ul class="reset job_sub dn">
                             ${$third}
                             </ul>
                            	</li>`;
-                })
-                $first+=`<dl>
+					})
+					$first += `<dl>
                          <dt>${firstJobTypeGroup.jobType.name}</dt>
                          <dd>
                          <ul class="reset job_main">
@@ -427,9 +428,13 @@ $(function(){
                          </ul>
                          </dd>
                          </dl>`;
-            })
-            $("#box_job").append($first);
-        }
+				})
+				$("#box_job").append($first);
+			}
+			else{
+				cnosole.log("111")
+			}
+		}
     })
 
 	/***********************************************
@@ -565,8 +570,10 @@ function showInfo(e){
 map.addEventListener("click", showInfo);//地图点击事件
 
 $(function(){
-	let userName=localStorage.getItem("userNama")
+	let userName=localStorage.getItem("userName")
 	$("#userNames").text(userName)
+	let cpEmail=localStorage.getItem("cpEmail")
+	$("#receiveEmailVal").text(cpEmail)
 	$('#mapPreview').bind('click',function(){
 		$.colorbox({inline:true, href:"#baiduMap",title:"公司地址"});
 		var address = $('#positionAddress').val();
